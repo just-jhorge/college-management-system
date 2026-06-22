@@ -1,0 +1,272 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  ACCOUNTANT
+  TUTOR
+  STUDENT
+}
+
+enum InvoiceStatus {
+  UNPAID
+  PARTIALLY_PAID
+  PAID
+  WAIVED
+}
+
+model School {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users      User[]
+  programmes Programme[]
+  semesters  Semester[]
+  courses    Course[]
+  bills      Bill[]
+
+  @@map("schools")
+}
+
+model User {
+  id             String          @id
+  name           String
+  email          String
+  emailVerified  Boolean         @default(false)
+  contact        String
+  image          String?
+  role           Role
+  schoolId       String?
+  school         School?         @relation(fields: [schoolId], references: [id])
+  tutorProfile   TutorProfile?
+  studentProfile StudentProfile?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  sessions      Session[]
+  accounts      Account[]
+  createdBills  Bill[]           @relation("BillCreatedBy")
+  taughtCourses SemesterCourse[] @relation("CourseTutor")
+
+  @@unique([email])
+  @@index([schoolId])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+model StudentProfile {
+  id          String    @id @default(cuid())
+  userId      String    @unique
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studentId   String //school-issued index number, unique per school
+  programmeId String
+  programme   Programme @relation(fields: [programmeId], references: [id])
+  currentYear Int       @default(1)
+  enrolledAt  DateTime  @default(now())
+
+  enrollments Enrollment[]
+  invoices    StudentInvoice[]
+
+  @@unique([programmeId, studentId])
+  @@map("students_profile")
+}
+
+model TutorProfile {
+  id             String  @id @default(cuid())
+  userId         String  @unique
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department     String
+  specialization String?
+
+  @@map("tutors_profile")
+}
+
+model Programme {
+  id            String   @id @default(cuid())
+  schoolId      String
+  school        School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  name          String
+  code          String
+  durationYears Int      @default(3)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  students StudentProfile[]
+  courses  Course[]
+  bills    BillProgramme[]
+
+  @@unique([schoolId, code])
+  @@map("programmes")
+}
+
+model Semester {
+  id        String   @id @default(cuid())
+  schoolId  String
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bills           Bill[]
+  semesterCourses SemesterCourse[]
+
+  @@unique([schoolId, name])
+  @@map("semesters")
+}
+
+model Course {
+  id          String    @id @default(cuid())
+  schoolId    String
+  school      School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  programmeId String
+  programme   Programme @relation(fields: [programmeId], references: [id], onDelete: Cascade)
+  code        String
+  title       String
+  year        Int
+  creditHours Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  semesterCourses SemesterCourse[]
+
+  @@unique([schoolId, code])
+  @@map("courses")
+}
+
+model SemesterCourse {
+  id         String   @id @default(cuid())
+  semesterId String
+  semester   Semester @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  tutorId    String?
+  tutor      User?    @relation("CourseTutor", fields: [tutorId], references: [id])
+  createdAt  DateTime @default(now())
+
+  enrollments Enrollment[]
+
+  @@unique([semesterId, courseId])
+  @@map("semester_courses")
+}
+
+model Enrollment {
+  id               String         @id @default(cuid())
+  studentId        String
+  student          StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  semesterCourseId String
+  semesterCourse   SemesterCourse @relation(fields: [semesterCourseId], references: [id], onDelete: Cascade)
+  enrolledAt       DateTime       @default(now())
+
+  @@unique([studentId, semesterCourseId])
+  @@map("enrollments")
+}
+
+model Bill {
+  id          String    @id @default(cuid())
+  schoolId    String
+  school      School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  semesterId  String?
+  semester    Semester? @relation(fields: [semesterId], references: [id])
+  title       String
+  description String?
+  amount      Int
+  createdById String
+  createdBy   User      @relation("BillCreatedBy", fields: [createdById], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  programmes      BillProgramme[]
+  studentInvoices StudentInvoice[]
+
+  @@map("bills")
+}
+
+model BillProgramme {
+  id          String    @id @default(cuid())
+  billId      String
+  bill        Bill      @relation(fields: [billId], references: [id], onDelete: Cascade)
+  programmeId String
+  programme   Programme @relation(fields: [programmeId], references: [id], onDelete: Cascade)
+
+  @@unique([billId, programmeId])
+  @@map("bill_programmes")
+}
+
+model StudentInvoice {
+  id         String         @id @default(cuid())
+  billId     String
+  bill       Bill           @relation(fields: [billId], references: [id], onDelete: Cascade)
+  studentId  String
+  student    StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  amountDue  Int
+  amountPaid Int
+  status     InvoiceStatus
+  createdAt  DateTime       @default(now())
+  updatedat  DateTime       @updatedAt
+
+  @@unique([billId, studentId])
+  @@map("student_invoices")
+}
