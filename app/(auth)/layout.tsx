@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
 import React from "react";
+import { School2 } from "lucide-react";
 
 export default async function AuthLayout({
   children,
@@ -12,8 +13,12 @@ export default async function AuthLayout({
   if (session) redirect("/dashboard");
 
   return (
-    <main className="w-full h-dvh flex items-center justify-center bg-muted">
-      <div>{children}</div>
+    <main className="w-full h-dvh flex flex-col gap-4 items-center justify-center bg-muted">
+      <div className="flex items-center gap-1">
+        <School2 />
+        <h3 className="text-lg font-semibold">Collegerr</h3>
+      </div>
+      {children}
     </main>
   );
 }
