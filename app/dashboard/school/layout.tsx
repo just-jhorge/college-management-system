@@ -9,11 +9,17 @@ export default async function SchoolAdminLayout({
 }) {
   const session = await getSession();
 
-  if (!session) redirect("/login");
+  // if (!session) {
+  //   redirect("/login");
+  // }
 
-  if (session.user.role !== "ADMIN") {
-    redirect("/dashboard");
+  if (!session) {
+    return <div>No session on school admin page</div>;
   }
+
+  // if (session.user.role !== "ADMIN") {
+  //   alert("You are not authorized to view this page");
+  // }
 
   return <>{children}</>;
 }

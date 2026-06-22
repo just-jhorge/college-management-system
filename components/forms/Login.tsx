@@ -17,6 +17,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordField } from "../fields/PasswordField";
 import { CheckboxField } from "../fields/CheckboxField";
 import { Field, FieldGroup } from "@/components/ui/field";
+import { useTransition } from "react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -25,18 +29,30 @@ const formSchema = z.object({
 });
 
 export default function Login() {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof formSchema>>({
     mode: "onSubmit",
     resolver: zodResolver(formSchema),
     defaultValues: { email: "", password: "", rememberMe: false },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    alert(JSON.stringify(data, null, 2));
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    startTransition(async () => {
+      const { data, error } = await authClient.signIn.email({
+        email: values.email,
+        password: values.password,
+        rememberMe: values.rememberMe,
+      });
+
+      console.log(data, error);
+      router.refresh();
+    });
   }
 
   return (
-    <div className="flex flex-col gap-6 min-w-sm lg:min-w-[22rem]">
+    <div className="flex flex-col gap-6 min-w-sm lg:min-w-88">
       <Card>
         <CardHeader>
           <CardTitle className="text-sm">Login to your account</CardTitle>
@@ -74,7 +90,10 @@ export default function Login() {
                 </Link>
               </div>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit" disabled={isPending}>
+                  {isPending && <Loader2 className="animate-spin" />}
+                  {isPending ? "Logging in..." : "Log in"}
+                </Button>
               </Field>
             </FieldGroup>
           </form>

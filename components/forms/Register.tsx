@@ -16,6 +16,9 @@ import { SelectField } from "../fields/SelectField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordField } from "../fields/PasswordField";
 import { Field, FieldGroup } from "@/components/ui/field";
+import { authClient } from "@/lib/auth-client";
+import { useTransition } from "react";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string(),
@@ -26,6 +29,8 @@ const formSchema = z.object({
 });
 
 export default function Register() {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof formSchema>>({
     mode: "onSubmit",
     resolver: zodResolver(formSchema),
@@ -38,12 +43,23 @@ export default function Register() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    alert(JSON.stringify(data, null, 2));
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    startTransition(async () => {
+      const { data, error } = await authClient.signUp.email({
+        name: values.name,
+        email: values.email,
+        contact: values.contact,
+        password: values.password,
+        role: values.role,
+        callbackURL: "/dashboard",
+      });
+
+      console.log(data, error);
+    });
   }
 
   return (
-    <div className="flex flex-col gap-6 min-w-sm lg:min-w-[22rem]">
+    <div className="flex flex-col gap-6 min-w-sm lg:min-w-88">
       <Card>
         <CardHeader>
           <CardTitle className="text-sm">Login to your account</CardTitle>
@@ -96,7 +112,10 @@ export default function Register() {
                 control={form.control}
               />
               <Field>
-                <Button type="submit">Register</Button>
+                <Button type="submit" disabled={isPending}>
+                  {isPending && <Loader2 className="animate-spin" />}
+                  {isPending ? "Signing up..." : "Register"}
+                </Button>
               </Field>
             </FieldGroup>
           </form>
