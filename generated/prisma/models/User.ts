@@ -307,7 +307,7 @@ export type UserScalarWhereWithAggregatesInput = {
 }
 
 export type UserCreateInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -326,7 +326,7 @@ export type UserCreateInput = {
 }
 
 export type UserUncheckedCreateInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -383,7 +383,7 @@ export type UserUncheckedUpdateInput = {
 }
 
 export type UserCreateManyInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -620,7 +620,7 @@ export type UserUpdateOneRequiredWithoutCreatedBillsNestedInput = {
 }
 
 export type UserCreateWithoutSchoolInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -638,7 +638,7 @@ export type UserCreateWithoutSchoolInput = {
 }
 
 export type UserUncheckedCreateWithoutSchoolInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -698,7 +698,7 @@ export type UserScalarWhereInput = {
 }
 
 export type UserCreateWithoutSessionsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -716,7 +716,7 @@ export type UserCreateWithoutSessionsInput = {
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -786,7 +786,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
 }
 
 export type UserCreateWithoutAccountsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -804,7 +804,7 @@ export type UserCreateWithoutAccountsInput = {
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -874,7 +874,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
 }
 
 export type UserCreateWithoutStudentProfileInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -892,7 +892,7 @@ export type UserCreateWithoutStudentProfileInput = {
 }
 
 export type UserUncheckedCreateWithoutStudentProfileInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -962,7 +962,7 @@ export type UserUncheckedUpdateWithoutStudentProfileInput = {
 }
 
 export type UserCreateWithoutTutorProfileInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -980,7 +980,7 @@ export type UserCreateWithoutTutorProfileInput = {
 }
 
 export type UserUncheckedCreateWithoutTutorProfileInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -1050,7 +1050,7 @@ export type UserUncheckedUpdateWithoutTutorProfileInput = {
 }
 
 export type UserCreateWithoutTaughtCoursesInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -1068,7 +1068,7 @@ export type UserCreateWithoutTaughtCoursesInput = {
 }
 
 export type UserUncheckedCreateWithoutTaughtCoursesInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -1138,7 +1138,7 @@ export type UserUncheckedUpdateWithoutTaughtCoursesInput = {
 }
 
 export type UserCreateWithoutCreatedBillsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -1156,7 +1156,7 @@ export type UserCreateWithoutCreatedBillsInput = {
 }
 
 export type UserUncheckedCreateWithoutCreatedBillsInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean
@@ -1226,7 +1226,7 @@ export type UserUncheckedUpdateWithoutCreatedBillsInput = {
 }
 
 export type UserCreateManySchoolInput = {
-  id: string
+  id?: string
   name: string
   email: string
   emailVerified?: boolean

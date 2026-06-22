@@ -12,7 +12,7 @@ export default async function AuthLayout({
   if (session) redirect("/dashboard");
 
   return (
-    <main className="w-full h-dvh flex items-center justify-center">
+    <main className="w-full h-dvh flex items-center justify-center bg-muted">
       <div>{children}</div>
     </main>
   );

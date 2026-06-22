@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, Inter } from "next/font/google";
 
 import "../css/globals.css";
 
 const playfairDisplayHeading = Playfair_Display({
-  subsets: ["latin"],
   variable: "--font-heading",
+  subsets: ["latin"],
 });
 
 const geistSans = Geist({
@@ -16,6 +16,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -33,10 +38,8 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
+        "h-full antialiased",
+        inter.className,
         playfairDisplayHeading.variable,
       )}
     >
