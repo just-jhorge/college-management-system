@@ -30,6 +30,8 @@ export type SemesterMinAggregateOutputType = {
   name: string | null
   startDate: Date | null
   endDate: Date | null
+  registrationStartDate: Date | null
+  registrationEndDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,6 +42,8 @@ export type SemesterMaxAggregateOutputType = {
   name: string | null
   startDate: Date | null
   endDate: Date | null
+  registrationStartDate: Date | null
+  registrationEndDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +54,8 @@ export type SemesterCountAggregateOutputType = {
   name: number
   startDate: number
   endDate: number
+  registrationStartDate: number
+  registrationEndDate: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -62,6 +68,8 @@ export type SemesterMinAggregateInputType = {
   name?: true
   startDate?: true
   endDate?: true
+  registrationStartDate?: true
+  registrationEndDate?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -72,6 +80,8 @@ export type SemesterMaxAggregateInputType = {
   name?: true
   startDate?: true
   endDate?: true
+  registrationStartDate?: true
+  registrationEndDate?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +92,8 @@ export type SemesterCountAggregateInputType = {
   name?: true
   startDate?: true
   endDate?: true
+  registrationStartDate?: true
+  registrationEndDate?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -165,6 +177,8 @@ export type SemesterGroupByOutputType = {
   name: string
   startDate: Date
   endDate: Date
+  registrationStartDate: Date
+  registrationEndDate: Date
   createdAt: Date
   updatedAt: Date
   _count: SemesterCountAggregateOutputType | null
@@ -196,11 +210,11 @@ export type SemesterWhereInput = {
   name?: Prisma.StringFilter<"Semester"> | string
   startDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
+  registrationStartDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
+  registrationEndDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
-  bills?: Prisma.BillListRelationFilter
-  semesterCourses?: Prisma.SemesterCourseListRelationFilter
 }
 
 export type SemesterOrderByWithRelationInput = {
@@ -209,11 +223,11 @@ export type SemesterOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  registrationStartDate?: Prisma.SortOrder
+  registrationEndDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   school?: Prisma.SchoolOrderByWithRelationInput
-  bills?: Prisma.BillOrderByRelationAggregateInput
-  semesterCourses?: Prisma.SemesterCourseOrderByRelationAggregateInput
 }
 
 export type SemesterWhereUniqueInput = Prisma.AtLeast<{
@@ -226,11 +240,11 @@ export type SemesterWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Semester"> | string
   startDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
+  registrationStartDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
+  registrationEndDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
-  bills?: Prisma.BillListRelationFilter
-  semesterCourses?: Prisma.SemesterCourseListRelationFilter
 }, "id" | "schoolId_name">
 
 export type SemesterOrderByWithAggregationInput = {
@@ -239,6 +253,8 @@ export type SemesterOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  registrationStartDate?: Prisma.SortOrder
+  registrationEndDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SemesterCountOrderByAggregateInput
@@ -255,6 +271,8 @@ export type SemesterScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Semester"> | string
   startDate?: Prisma.DateTimeWithAggregatesFilter<"Semester"> | Date | string
   endDate?: Prisma.DateTimeWithAggregatesFilter<"Semester"> | Date | string
+  registrationStartDate?: Prisma.DateTimeWithAggregatesFilter<"Semester"> | Date | string
+  registrationEndDate?: Prisma.DateTimeWithAggregatesFilter<"Semester"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Semester"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Semester"> | Date | string
 }
@@ -264,11 +282,11 @@ export type SemesterCreateInput = {
   name: string
   startDate: Date | string
   endDate: Date | string
+  registrationStartDate: Date | string
+  registrationEndDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   school: Prisma.SchoolCreateNestedOneWithoutSemestersInput
-  bills?: Prisma.BillCreateNestedManyWithoutSemesterInput
-  semesterCourses?: Prisma.SemesterCourseCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterUncheckedCreateInput = {
@@ -277,10 +295,10 @@ export type SemesterUncheckedCreateInput = {
   name: string
   startDate: Date | string
   endDate: Date | string
+  registrationStartDate: Date | string
+  registrationEndDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  bills?: Prisma.BillUncheckedCreateNestedManyWithoutSemesterInput
-  semesterCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterUpdateInput = {
@@ -288,11 +306,11 @@ export type SemesterUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationStartDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   school?: Prisma.SchoolUpdateOneRequiredWithoutSemestersNestedInput
-  bills?: Prisma.BillUpdateManyWithoutSemesterNestedInput
-  semesterCourses?: Prisma.SemesterCourseUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterUncheckedUpdateInput = {
@@ -301,10 +319,10 @@ export type SemesterUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationStartDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bills?: Prisma.BillUncheckedUpdateManyWithoutSemesterNestedInput
-  semesterCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterCreateManyInput = {
@@ -313,6 +331,8 @@ export type SemesterCreateManyInput = {
   name: string
   startDate: Date | string
   endDate: Date | string
+  registrationStartDate: Date | string
+  registrationEndDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -322,6 +342,8 @@ export type SemesterUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationStartDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -332,6 +354,8 @@ export type SemesterUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationStartDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -357,6 +381,8 @@ export type SemesterCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  registrationStartDate?: Prisma.SortOrder
+  registrationEndDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -367,6 +393,8 @@ export type SemesterMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  registrationStartDate?: Prisma.SortOrder
+  registrationEndDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -377,18 +405,10 @@ export type SemesterMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+  registrationStartDate?: Prisma.SortOrder
+  registrationEndDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type SemesterScalarRelationFilter = {
-  is?: Prisma.SemesterWhereInput
-  isNot?: Prisma.SemesterWhereInput
-}
-
-export type SemesterNullableScalarRelationFilter = {
-  is?: Prisma.SemesterWhereInput | null
-  isNot?: Prisma.SemesterWhereInput | null
 }
 
 export type SemesterCreateNestedManyWithoutSchoolInput = {
@@ -433,45 +453,15 @@ export type SemesterUncheckedUpdateManyWithoutSchoolNestedInput = {
   deleteMany?: Prisma.SemesterScalarWhereInput | Prisma.SemesterScalarWhereInput[]
 }
 
-export type SemesterCreateNestedOneWithoutSemesterCoursesInput = {
-  create?: Prisma.XOR<Prisma.SemesterCreateWithoutSemesterCoursesInput, Prisma.SemesterUncheckedCreateWithoutSemesterCoursesInput>
-  connectOrCreate?: Prisma.SemesterCreateOrConnectWithoutSemesterCoursesInput
-  connect?: Prisma.SemesterWhereUniqueInput
-}
-
-export type SemesterUpdateOneRequiredWithoutSemesterCoursesNestedInput = {
-  create?: Prisma.XOR<Prisma.SemesterCreateWithoutSemesterCoursesInput, Prisma.SemesterUncheckedCreateWithoutSemesterCoursesInput>
-  connectOrCreate?: Prisma.SemesterCreateOrConnectWithoutSemesterCoursesInput
-  upsert?: Prisma.SemesterUpsertWithoutSemesterCoursesInput
-  connect?: Prisma.SemesterWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SemesterUpdateToOneWithWhereWithoutSemesterCoursesInput, Prisma.SemesterUpdateWithoutSemesterCoursesInput>, Prisma.SemesterUncheckedUpdateWithoutSemesterCoursesInput>
-}
-
-export type SemesterCreateNestedOneWithoutBillsInput = {
-  create?: Prisma.XOR<Prisma.SemesterCreateWithoutBillsInput, Prisma.SemesterUncheckedCreateWithoutBillsInput>
-  connectOrCreate?: Prisma.SemesterCreateOrConnectWithoutBillsInput
-  connect?: Prisma.SemesterWhereUniqueInput
-}
-
-export type SemesterUpdateOneWithoutBillsNestedInput = {
-  create?: Prisma.XOR<Prisma.SemesterCreateWithoutBillsInput, Prisma.SemesterUncheckedCreateWithoutBillsInput>
-  connectOrCreate?: Prisma.SemesterCreateOrConnectWithoutBillsInput
-  upsert?: Prisma.SemesterUpsertWithoutBillsInput
-  disconnect?: Prisma.SemesterWhereInput | boolean
-  delete?: Prisma.SemesterWhereInput | boolean
-  connect?: Prisma.SemesterWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SemesterUpdateToOneWithWhereWithoutBillsInput, Prisma.SemesterUpdateWithoutBillsInput>, Prisma.SemesterUncheckedUpdateWithoutBillsInput>
-}
-
 export type SemesterCreateWithoutSchoolInput = {
   id?: string
   name: string
   startDate: Date | string
   endDate: Date | string
+  registrationStartDate: Date | string
+  registrationEndDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  bills?: Prisma.BillCreateNestedManyWithoutSemesterInput
-  semesterCourses?: Prisma.SemesterCourseCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterUncheckedCreateWithoutSchoolInput = {
@@ -479,10 +469,10 @@ export type SemesterUncheckedCreateWithoutSchoolInput = {
   name: string
   startDate: Date | string
   endDate: Date | string
+  registrationStartDate: Date | string
+  registrationEndDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  bills?: Prisma.BillUncheckedCreateNestedManyWithoutSemesterInput
-  semesterCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterCreateOrConnectWithoutSchoolInput = {
@@ -520,128 +510,10 @@ export type SemesterScalarWhereInput = {
   name?: Prisma.StringFilter<"Semester"> | string
   startDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
+  registrationStartDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
+  registrationEndDate?: Prisma.DateTimeFilter<"Semester"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
-}
-
-export type SemesterCreateWithoutSemesterCoursesInput = {
-  id?: string
-  name: string
-  startDate: Date | string
-  endDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  school: Prisma.SchoolCreateNestedOneWithoutSemestersInput
-  bills?: Prisma.BillCreateNestedManyWithoutSemesterInput
-}
-
-export type SemesterUncheckedCreateWithoutSemesterCoursesInput = {
-  id?: string
-  schoolId: string
-  name: string
-  startDate: Date | string
-  endDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  bills?: Prisma.BillUncheckedCreateNestedManyWithoutSemesterInput
-}
-
-export type SemesterCreateOrConnectWithoutSemesterCoursesInput = {
-  where: Prisma.SemesterWhereUniqueInput
-  create: Prisma.XOR<Prisma.SemesterCreateWithoutSemesterCoursesInput, Prisma.SemesterUncheckedCreateWithoutSemesterCoursesInput>
-}
-
-export type SemesterUpsertWithoutSemesterCoursesInput = {
-  update: Prisma.XOR<Prisma.SemesterUpdateWithoutSemesterCoursesInput, Prisma.SemesterUncheckedUpdateWithoutSemesterCoursesInput>
-  create: Prisma.XOR<Prisma.SemesterCreateWithoutSemesterCoursesInput, Prisma.SemesterUncheckedCreateWithoutSemesterCoursesInput>
-  where?: Prisma.SemesterWhereInput
-}
-
-export type SemesterUpdateToOneWithWhereWithoutSemesterCoursesInput = {
-  where?: Prisma.SemesterWhereInput
-  data: Prisma.XOR<Prisma.SemesterUpdateWithoutSemesterCoursesInput, Prisma.SemesterUncheckedUpdateWithoutSemesterCoursesInput>
-}
-
-export type SemesterUpdateWithoutSemesterCoursesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  school?: Prisma.SchoolUpdateOneRequiredWithoutSemestersNestedInput
-  bills?: Prisma.BillUpdateManyWithoutSemesterNestedInput
-}
-
-export type SemesterUncheckedUpdateWithoutSemesterCoursesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  schoolId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bills?: Prisma.BillUncheckedUpdateManyWithoutSemesterNestedInput
-}
-
-export type SemesterCreateWithoutBillsInput = {
-  id?: string
-  name: string
-  startDate: Date | string
-  endDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  school: Prisma.SchoolCreateNestedOneWithoutSemestersInput
-  semesterCourses?: Prisma.SemesterCourseCreateNestedManyWithoutSemesterInput
-}
-
-export type SemesterUncheckedCreateWithoutBillsInput = {
-  id?: string
-  schoolId: string
-  name: string
-  startDate: Date | string
-  endDate: Date | string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  semesterCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutSemesterInput
-}
-
-export type SemesterCreateOrConnectWithoutBillsInput = {
-  where: Prisma.SemesterWhereUniqueInput
-  create: Prisma.XOR<Prisma.SemesterCreateWithoutBillsInput, Prisma.SemesterUncheckedCreateWithoutBillsInput>
-}
-
-export type SemesterUpsertWithoutBillsInput = {
-  update: Prisma.XOR<Prisma.SemesterUpdateWithoutBillsInput, Prisma.SemesterUncheckedUpdateWithoutBillsInput>
-  create: Prisma.XOR<Prisma.SemesterCreateWithoutBillsInput, Prisma.SemesterUncheckedCreateWithoutBillsInput>
-  where?: Prisma.SemesterWhereInput
-}
-
-export type SemesterUpdateToOneWithWhereWithoutBillsInput = {
-  where?: Prisma.SemesterWhereInput
-  data: Prisma.XOR<Prisma.SemesterUpdateWithoutBillsInput, Prisma.SemesterUncheckedUpdateWithoutBillsInput>
-}
-
-export type SemesterUpdateWithoutBillsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  school?: Prisma.SchoolUpdateOneRequiredWithoutSemestersNestedInput
-  semesterCourses?: Prisma.SemesterCourseUpdateManyWithoutSemesterNestedInput
-}
-
-export type SemesterUncheckedUpdateWithoutBillsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  schoolId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  semesterCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterCreateManySchoolInput = {
@@ -649,6 +521,8 @@ export type SemesterCreateManySchoolInput = {
   name: string
   startDate: Date | string
   endDate: Date | string
+  registrationStartDate: Date | string
+  registrationEndDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -658,10 +532,10 @@ export type SemesterUpdateWithoutSchoolInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationStartDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bills?: Prisma.BillUpdateManyWithoutSemesterNestedInput
-  semesterCourses?: Prisma.SemesterCourseUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterUncheckedUpdateWithoutSchoolInput = {
@@ -669,10 +543,10 @@ export type SemesterUncheckedUpdateWithoutSchoolInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationStartDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bills?: Prisma.BillUncheckedUpdateManyWithoutSemesterNestedInput
-  semesterCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterUncheckedUpdateManyWithoutSchoolInput = {
@@ -680,48 +554,12 @@ export type SemesterUncheckedUpdateManyWithoutSchoolInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationStartDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrationEndDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type SemesterCountOutputType
- */
-
-export type SemesterCountOutputType = {
-  bills: number
-  semesterCourses: number
-}
-
-export type SemesterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  bills?: boolean | SemesterCountOutputTypeCountBillsArgs
-  semesterCourses?: boolean | SemesterCountOutputTypeCountSemesterCoursesArgs
-}
-
-/**
- * SemesterCountOutputType without action
- */
-export type SemesterCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SemesterCountOutputType
-   */
-  select?: Prisma.SemesterCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * SemesterCountOutputType without action
- */
-export type SemesterCountOutputTypeCountBillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BillWhereInput
-}
-
-/**
- * SemesterCountOutputType without action
- */
-export type SemesterCountOutputTypeCountSemesterCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SemesterCourseWhereInput
-}
 
 
 export type SemesterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -730,12 +568,11 @@ export type SemesterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name?: boolean
   startDate?: boolean
   endDate?: boolean
+  registrationStartDate?: boolean
+  registrationEndDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
-  bills?: boolean | Prisma.Semester$billsArgs<ExtArgs>
-  semesterCourses?: boolean | Prisma.Semester$semesterCoursesArgs<ExtArgs>
-  _count?: boolean | Prisma.SemesterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["semester"]>
 
 export type SemesterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -744,6 +581,8 @@ export type SemesterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   startDate?: boolean
   endDate?: boolean
+  registrationStartDate?: boolean
+  registrationEndDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
@@ -755,6 +594,8 @@ export type SemesterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   startDate?: boolean
   endDate?: boolean
+  registrationStartDate?: boolean
+  registrationEndDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
@@ -766,16 +607,15 @@ export type SemesterSelectScalar = {
   name?: boolean
   startDate?: boolean
   endDate?: boolean
+  registrationStartDate?: boolean
+  registrationEndDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SemesterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "schoolId" | "name" | "startDate" | "endDate" | "createdAt" | "updatedAt", ExtArgs["result"]["semester"]>
+export type SemesterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "schoolId" | "name" | "startDate" | "endDate" | "registrationStartDate" | "registrationEndDate" | "createdAt" | "updatedAt", ExtArgs["result"]["semester"]>
 export type SemesterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
-  bills?: boolean | Prisma.Semester$billsArgs<ExtArgs>
-  semesterCourses?: boolean | Prisma.Semester$semesterCoursesArgs<ExtArgs>
-  _count?: boolean | Prisma.SemesterCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SemesterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
@@ -788,8 +628,6 @@ export type $SemesterPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Semester"
   objects: {
     school: Prisma.$SchoolPayload<ExtArgs>
-    bills: Prisma.$BillPayload<ExtArgs>[]
-    semesterCourses: Prisma.$SemesterCoursePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -797,6 +635,8 @@ export type $SemesterPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     name: string
     startDate: Date
     endDate: Date
+    registrationStartDate: Date
+    registrationEndDate: Date
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["semester"]>
@@ -1194,8 +1034,6 @@ readonly fields: SemesterFieldRefs;
 export interface Prisma__SemesterClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   school<T extends Prisma.SchoolDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolDefaultArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  bills<T extends Prisma.Semester$billsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Semester$billsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  semesterCourses<T extends Prisma.Semester$semesterCoursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Semester$semesterCoursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SemesterCoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1230,6 +1068,8 @@ export interface SemesterFieldRefs {
   readonly name: Prisma.FieldRef<"Semester", 'String'>
   readonly startDate: Prisma.FieldRef<"Semester", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Semester", 'DateTime'>
+  readonly registrationStartDate: Prisma.FieldRef<"Semester", 'DateTime'>
+  readonly registrationEndDate: Prisma.FieldRef<"Semester", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Semester", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Semester", 'DateTime'>
 }
@@ -1630,54 +1470,6 @@ export type SemesterDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Semesters to delete.
    */
   limit?: number
-}
-
-/**
- * Semester.bills
- */
-export type Semester$billsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Bill
-   */
-  select?: Prisma.BillSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Bill
-   */
-  omit?: Prisma.BillOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BillInclude<ExtArgs> | null
-  where?: Prisma.BillWhereInput
-  orderBy?: Prisma.BillOrderByWithRelationInput | Prisma.BillOrderByWithRelationInput[]
-  cursor?: Prisma.BillWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BillScalarFieldEnum | Prisma.BillScalarFieldEnum[]
-}
-
-/**
- * Semester.semesterCourses
- */
-export type Semester$semesterCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SemesterCourse
-   */
-  select?: Prisma.SemesterCourseSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SemesterCourse
-   */
-  omit?: Prisma.SemesterCourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SemesterCourseInclude<ExtArgs> | null
-  where?: Prisma.SemesterCourseWhereInput
-  orderBy?: Prisma.SemesterCourseOrderByWithRelationInput | Prisma.SemesterCourseOrderByWithRelationInput[]
-  cursor?: Prisma.SemesterCourseWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SemesterCourseScalarFieldEnum | Prisma.SemesterCourseScalarFieldEnum[]
 }
 
 /**

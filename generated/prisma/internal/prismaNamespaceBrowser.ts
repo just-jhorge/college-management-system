@@ -60,12 +60,7 @@ export const ModelName = {
   TutorProfile: 'TutorProfile',
   Programme: 'Programme',
   Semester: 'Semester',
-  Course: 'Course',
-  SemesterCourse: 'SemesterCourse',
-  Enrollment: 'Enrollment',
-  Bill: 'Bill',
-  BillProgramme: 'BillProgramme',
-  StudentInvoice: 'StudentInvoice'
+  Course: 'Course'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -196,6 +191,8 @@ export const SemesterScalarFieldEnum = {
   name: 'name',
   startDate: 'startDate',
   endDate: 'endDate',
+  registrationStartDate: 'registrationStartDate',
+  registrationEndDate: 'registrationEndDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -216,65 +213,6 @@ export const CourseScalarFieldEnum = {
 } as const
 
 export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
-
-
-export const SemesterCourseScalarFieldEnum = {
-  id: 'id',
-  semesterId: 'semesterId',
-  courseId: 'courseId',
-  tutorId: 'tutorId',
-  createdAt: 'createdAt'
-} as const
-
-export type SemesterCourseScalarFieldEnum = (typeof SemesterCourseScalarFieldEnum)[keyof typeof SemesterCourseScalarFieldEnum]
-
-
-export const EnrollmentScalarFieldEnum = {
-  id: 'id',
-  studentId: 'studentId',
-  semesterCourseId: 'semesterCourseId',
-  enrolledAt: 'enrolledAt'
-} as const
-
-export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
-
-
-export const BillScalarFieldEnum = {
-  id: 'id',
-  schoolId: 'schoolId',
-  semesterId: 'semesterId',
-  title: 'title',
-  description: 'description',
-  amount: 'amount',
-  createdById: 'createdById',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type BillScalarFieldEnum = (typeof BillScalarFieldEnum)[keyof typeof BillScalarFieldEnum]
-
-
-export const BillProgrammeScalarFieldEnum = {
-  id: 'id',
-  billId: 'billId',
-  programmeId: 'programmeId'
-} as const
-
-export type BillProgrammeScalarFieldEnum = (typeof BillProgrammeScalarFieldEnum)[keyof typeof BillProgrammeScalarFieldEnum]
-
-
-export const StudentInvoiceScalarFieldEnum = {
-  id: 'id',
-  billId: 'billId',
-  studentId: 'studentId',
-  amountDue: 'amountDue',
-  amountPaid: 'amountPaid',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedat: 'updatedat'
-} as const
-
-export type StudentInvoiceScalarFieldEnum = (typeof StudentInvoiceScalarFieldEnum)[keyof typeof StudentInvoiceScalarFieldEnum]
 
 
 export const SortOrder = {

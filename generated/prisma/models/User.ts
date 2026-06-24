@@ -227,8 +227,6 @@ export type UserWhereInput = {
   studentProfile?: Prisma.XOR<Prisma.StudentProfileNullableScalarRelationFilter, Prisma.StudentProfileWhereInput> | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
-  createdBills?: Prisma.BillListRelationFilter
-  taughtCourses?: Prisma.SemesterCourseListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -247,8 +245,6 @@ export type UserOrderByWithRelationInput = {
   studentProfile?: Prisma.StudentProfileOrderByWithRelationInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
-  createdBills?: Prisma.BillOrderByRelationAggregateInput
-  taughtCourses?: Prisma.SemesterCourseOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -270,8 +266,6 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   studentProfile?: Prisma.XOR<Prisma.StudentProfileNullableScalarRelationFilter, Prisma.StudentProfileWhereInput> | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
-  createdBills?: Prisma.BillListRelationFilter
-  taughtCourses?: Prisma.SemesterCourseListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -321,8 +315,6 @@ export type UserCreateInput = {
   studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseCreateNestedManyWithoutTutorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -340,8 +332,6 @@ export type UserUncheckedCreateInput = {
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillUncheckedCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutTutorInput
 }
 
 export type UserUpdateInput = {
@@ -359,8 +349,6 @@ export type UserUpdateInput = {
   studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUpdateManyWithoutTutorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -378,8 +366,6 @@ export type UserUncheckedUpdateInput = {
   studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUncheckedUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -472,11 +458,6 @@ export type UserMinOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
-}
-
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
 }
 
 export type UserCreateNestedManyWithoutSchoolInput = {
@@ -589,36 +570,6 @@ export type UserUpdateOneRequiredWithoutTutorProfileNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTutorProfileInput, Prisma.UserUpdateWithoutTutorProfileInput>, Prisma.UserUncheckedUpdateWithoutTutorProfileInput>
 }
 
-export type UserCreateNestedOneWithoutTaughtCoursesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTaughtCoursesInput, Prisma.UserUncheckedCreateWithoutTaughtCoursesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaughtCoursesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneWithoutTaughtCoursesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTaughtCoursesInput, Prisma.UserUncheckedCreateWithoutTaughtCoursesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaughtCoursesInput
-  upsert?: Prisma.UserUpsertWithoutTaughtCoursesInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTaughtCoursesInput, Prisma.UserUpdateWithoutTaughtCoursesInput>, Prisma.UserUncheckedUpdateWithoutTaughtCoursesInput>
-}
-
-export type UserCreateNestedOneWithoutCreatedBillsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedBillsInput, Prisma.UserUncheckedCreateWithoutCreatedBillsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedBillsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutCreatedBillsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedBillsInput, Prisma.UserUncheckedCreateWithoutCreatedBillsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedBillsInput
-  upsert?: Prisma.UserUpsertWithoutCreatedBillsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedBillsInput, Prisma.UserUpdateWithoutCreatedBillsInput>, Prisma.UserUncheckedUpdateWithoutCreatedBillsInput>
-}
-
 export type UserCreateWithoutSchoolInput = {
   id?: string
   name: string
@@ -633,8 +584,6 @@ export type UserCreateWithoutSchoolInput = {
   studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseCreateNestedManyWithoutTutorInput
 }
 
 export type UserUncheckedCreateWithoutSchoolInput = {
@@ -651,8 +600,6 @@ export type UserUncheckedCreateWithoutSchoolInput = {
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillUncheckedCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutTutorInput
 }
 
 export type UserCreateOrConnectWithoutSchoolInput = {
@@ -711,8 +658,6 @@ export type UserCreateWithoutSessionsInput = {
   tutorProfile?: Prisma.TutorProfileCreateNestedOneWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseCreateNestedManyWithoutTutorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -729,8 +674,6 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   tutorProfile?: Prisma.TutorProfileUncheckedCreateNestedOneWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillUncheckedCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutTutorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -763,8 +706,6 @@ export type UserUpdateWithoutSessionsInput = {
   tutorProfile?: Prisma.TutorProfileUpdateOneWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUpdateManyWithoutTutorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -781,8 +722,6 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   tutorProfile?: Prisma.TutorProfileUncheckedUpdateOneWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUncheckedUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -799,8 +738,6 @@ export type UserCreateWithoutAccountsInput = {
   tutorProfile?: Prisma.TutorProfileCreateNestedOneWithoutUserInput
   studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseCreateNestedManyWithoutTutorInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -817,8 +754,6 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   tutorProfile?: Prisma.TutorProfileUncheckedCreateNestedOneWithoutUserInput
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillUncheckedCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutTutorInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -851,8 +786,6 @@ export type UserUpdateWithoutAccountsInput = {
   tutorProfile?: Prisma.TutorProfileUpdateOneWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUpdateManyWithoutTutorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -869,8 +802,6 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   tutorProfile?: Prisma.TutorProfileUncheckedUpdateOneWithoutUserNestedInput
   studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUncheckedUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type UserCreateWithoutStudentProfileInput = {
@@ -887,8 +818,6 @@ export type UserCreateWithoutStudentProfileInput = {
   tutorProfile?: Prisma.TutorProfileCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseCreateNestedManyWithoutTutorInput
 }
 
 export type UserUncheckedCreateWithoutStudentProfileInput = {
@@ -905,8 +834,6 @@ export type UserUncheckedCreateWithoutStudentProfileInput = {
   tutorProfile?: Prisma.TutorProfileUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillUncheckedCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutTutorInput
 }
 
 export type UserCreateOrConnectWithoutStudentProfileInput = {
@@ -939,8 +866,6 @@ export type UserUpdateWithoutStudentProfileInput = {
   tutorProfile?: Prisma.TutorProfileUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUpdateManyWithoutTutorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentProfileInput = {
@@ -957,8 +882,6 @@ export type UserUncheckedUpdateWithoutStudentProfileInput = {
   tutorProfile?: Prisma.TutorProfileUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUncheckedUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type UserCreateWithoutTutorProfileInput = {
@@ -975,8 +898,6 @@ export type UserCreateWithoutTutorProfileInput = {
   studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseCreateNestedManyWithoutTutorInput
 }
 
 export type UserUncheckedCreateWithoutTutorProfileInput = {
@@ -993,8 +914,6 @@ export type UserUncheckedCreateWithoutTutorProfileInput = {
   studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillUncheckedCreateNestedManyWithoutCreatedByInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutTutorInput
 }
 
 export type UserCreateOrConnectWithoutTutorProfileInput = {
@@ -1027,8 +946,6 @@ export type UserUpdateWithoutTutorProfileInput = {
   studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUpdateManyWithoutTutorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTutorProfileInput = {
@@ -1045,184 +962,6 @@ export type UserUncheckedUpdateWithoutTutorProfileInput = {
   studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUncheckedUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutTutorNestedInput
-}
-
-export type UserCreateWithoutTaughtCoursesInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified?: boolean
-  contact: string
-  image?: string | null
-  role: $Enums.Role
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
-  tutorProfile?: Prisma.TutorProfileCreateNestedOneWithoutUserInput
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillCreateNestedManyWithoutCreatedByInput
-}
-
-export type UserUncheckedCreateWithoutTaughtCoursesInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified?: boolean
-  contact: string
-  image?: string | null
-  role: $Enums.Role
-  schoolId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  tutorProfile?: Prisma.TutorProfileUncheckedCreateNestedOneWithoutUserInput
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  createdBills?: Prisma.BillUncheckedCreateNestedManyWithoutCreatedByInput
-}
-
-export type UserCreateOrConnectWithoutTaughtCoursesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTaughtCoursesInput, Prisma.UserUncheckedCreateWithoutTaughtCoursesInput>
-}
-
-export type UserUpsertWithoutTaughtCoursesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTaughtCoursesInput, Prisma.UserUncheckedUpdateWithoutTaughtCoursesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTaughtCoursesInput, Prisma.UserUncheckedCreateWithoutTaughtCoursesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTaughtCoursesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTaughtCoursesInput, Prisma.UserUncheckedUpdateWithoutTaughtCoursesInput>
-}
-
-export type UserUpdateWithoutTaughtCoursesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  contact?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
-  tutorProfile?: Prisma.TutorProfileUpdateOneWithoutUserNestedInput
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUpdateManyWithoutCreatedByNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTaughtCoursesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  contact?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutorProfile?: Prisma.TutorProfileUncheckedUpdateOneWithoutUserNestedInput
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUncheckedUpdateManyWithoutCreatedByNestedInput
-}
-
-export type UserCreateWithoutCreatedBillsInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified?: boolean
-  contact: string
-  image?: string | null
-  role: $Enums.Role
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
-  tutorProfile?: Prisma.TutorProfileCreateNestedOneWithoutUserInput
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  taughtCourses?: Prisma.SemesterCourseCreateNestedManyWithoutTutorInput
-}
-
-export type UserUncheckedCreateWithoutCreatedBillsInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified?: boolean
-  contact: string
-  image?: string | null
-  role: $Enums.Role
-  schoolId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  tutorProfile?: Prisma.TutorProfileUncheckedCreateNestedOneWithoutUserInput
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedCreateNestedManyWithoutTutorInput
-}
-
-export type UserCreateOrConnectWithoutCreatedBillsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedBillsInput, Prisma.UserUncheckedCreateWithoutCreatedBillsInput>
-}
-
-export type UserUpsertWithoutCreatedBillsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedBillsInput, Prisma.UserUncheckedUpdateWithoutCreatedBillsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedBillsInput, Prisma.UserUncheckedCreateWithoutCreatedBillsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutCreatedBillsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedBillsInput, Prisma.UserUncheckedUpdateWithoutCreatedBillsInput>
-}
-
-export type UserUpdateWithoutCreatedBillsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  contact?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
-  tutorProfile?: Prisma.TutorProfileUpdateOneWithoutUserNestedInput
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  taughtCourses?: Prisma.SemesterCourseUpdateManyWithoutTutorNestedInput
-}
-
-export type UserUncheckedUpdateWithoutCreatedBillsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  contact?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutorProfile?: Prisma.TutorProfileUncheckedUpdateOneWithoutUserNestedInput
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type UserCreateManySchoolInput = {
@@ -1251,8 +990,6 @@ export type UserUpdateWithoutSchoolInput = {
   studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUpdateManyWithoutTutorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSchoolInput = {
@@ -1269,8 +1006,6 @@ export type UserUncheckedUpdateWithoutSchoolInput = {
   studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  createdBills?: Prisma.BillUncheckedUpdateManyWithoutCreatedByNestedInput
-  taughtCourses?: Prisma.SemesterCourseUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutSchoolInput = {
@@ -1293,15 +1028,11 @@ export type UserUncheckedUpdateManyWithoutSchoolInput = {
 export type UserCountOutputType = {
   sessions: number
   accounts: number
-  createdBills: number
-  taughtCourses: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-  createdBills?: boolean | UserCountOutputTypeCountCreatedBillsArgs
-  taughtCourses?: boolean | UserCountOutputTypeCountTaughtCoursesArgs
 }
 
 /**
@@ -1328,20 +1059,6 @@ export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.AccountWhereInput
 }
 
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountCreatedBillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BillWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountTaughtCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SemesterCourseWhereInput
-}
-
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1359,8 +1076,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  createdBills?: boolean | Prisma.User$createdBillsArgs<ExtArgs>
-  taughtCourses?: boolean | Prisma.User$taughtCoursesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1412,8 +1127,6 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  createdBills?: boolean | Prisma.User$createdBillsArgs<ExtArgs>
-  taughtCourses?: boolean | Prisma.User$taughtCoursesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1431,8 +1144,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     studentProfile: Prisma.$StudentProfilePayload<ExtArgs> | null
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
-    createdBills: Prisma.$BillPayload<ExtArgs>[]
-    taughtCourses: Prisma.$SemesterCoursePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1844,8 +1555,6 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   studentProfile<T extends Prisma.User$studentProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentProfileArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  createdBills<T extends Prisma.User$createdBillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdBillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  taughtCourses<T extends Prisma.User$taughtCoursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$taughtCoursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SemesterCoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2388,54 +2097,6 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.AccountScalarFieldEnum | Prisma.AccountScalarFieldEnum[]
-}
-
-/**
- * User.createdBills
- */
-export type User$createdBillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Bill
-   */
-  select?: Prisma.BillSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Bill
-   */
-  omit?: Prisma.BillOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BillInclude<ExtArgs> | null
-  where?: Prisma.BillWhereInput
-  orderBy?: Prisma.BillOrderByWithRelationInput | Prisma.BillOrderByWithRelationInput[]
-  cursor?: Prisma.BillWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BillScalarFieldEnum | Prisma.BillScalarFieldEnum[]
-}
-
-/**
- * User.taughtCourses
- */
-export type User$taughtCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SemesterCourse
-   */
-  select?: Prisma.SemesterCourseSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SemesterCourse
-   */
-  omit?: Prisma.SemesterCourseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SemesterCourseInclude<ExtArgs> | null
-  where?: Prisma.SemesterCourseWhereInput
-  orderBy?: Prisma.SemesterCourseOrderByWithRelationInput | Prisma.SemesterCourseOrderByWithRelationInput[]
-  cursor?: Prisma.SemesterCourseWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SemesterCourseScalarFieldEnum | Prisma.SemesterCourseScalarFieldEnum[]
 }
 
 /**

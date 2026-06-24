@@ -32,7 +32,7 @@ model School {
   programmes Programme[]
   semesters  Semester[]
   courses    Course[]
-  bills      Bill[]
+  // bills      Bill[]
 
   @@map("schools")
 }
@@ -52,10 +52,10 @@ model User {
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 
-  sessions      Session[]
-  accounts      Account[]
-  createdBills  Bill[]           @relation("BillCreatedBy")
-  taughtCourses SemesterCourse[] @relation("CourseTutor")
+  sessions Session[]
+  accounts Account[]
+  // createdBills  Bill[]           @relation("BillCreatedBy")
+  // taughtCourses SemesterCourse[] @relation("CourseTutor")
 
   @@unique([email])
   @@index([schoolId])
@@ -120,8 +120,8 @@ model StudentProfile {
   currentYear Int       @default(1)
   enrolledAt  DateTime  @default(now())
 
-  enrollments Enrollment[]
-  invoices    StudentInvoice[]
+  // enrollments Enrollment[]
+  // invoices    StudentInvoice[]
 
   @@unique([programmeId, studentId])
   @@map("students_profile")
@@ -149,7 +149,7 @@ model Programme {
 
   students StudentProfile[]
   courses  Course[]
-  bills    BillProgramme[]
+  // bills    BillProgramme[]
 
   @@unique([schoolId, code])
   @@map("programmes")
@@ -167,8 +167,8 @@ model Semester {
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 
-  bills           Bill[]
-  semesterCourses SemesterCourse[]
+  // bills           Bill[]
+  // semesterCourses SemesterCourse[]
 
   @@unique([schoolId, name])
   @@map("semesters")
@@ -187,7 +187,7 @@ model Course {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  semesterCourses SemesterCourse[]
+  // semesterCourses SemesterCourse[]
 
   @@unique([schoolId, code])
   @@map("courses")

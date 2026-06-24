@@ -67,28 +67,3 @@ export type Semester = Prisma.SemesterModel
  * 
  */
 export type Course = Prisma.CourseModel
-/**
- * Model SemesterCourse
- * 
- */
-export type SemesterCourse = Prisma.SemesterCourseModel
-/**
- * Model Enrollment
- * 
- */
-export type Enrollment = Prisma.EnrollmentModel
-/**
- * Model Bill
- * 
- */
-export type Bill = Prisma.BillModel
-/**
- * Model BillProgramme
- * 
- */
-export type BillProgramme = Prisma.BillProgrammeModel
-/**
- * Model StudentInvoice
- * 
- */
-export type StudentInvoice = Prisma.StudentInvoiceModel
