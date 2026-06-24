@@ -1,21 +1,11 @@
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 
 import "../css/globals.css";
 
 const playfairDisplayHeading = Playfair_Display({
   variable: "--font-heading",
-  subsets: ["latin"],
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 

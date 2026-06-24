@@ -1,6 +1,8 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
+import SidebarAccountant from "../_components/SidebarAccountant";
+import DashboardLayoutShell from "../_components/DashboardLayoutShell";
 
 export default async function AccountantLayout({
   children,
@@ -8,12 +10,17 @@ export default async function AccountantLayout({
   children: React.ReactNode;
 }) {
   const session = await getSession();
+  const user = session?.user;
 
-  if (!session) redirect("/login");
+  if (!session || !user) redirect("/login");
 
   if (session.user.role !== "ACCOUNTANT") {
     redirect("/dashboard");
   }
 
-  return <>{children}</>;
+  return (
+    <DashboardLayoutShell content={<SidebarAccountant user={user} />}>
+      {children}
+    </DashboardLayoutShell>
+  );
 }

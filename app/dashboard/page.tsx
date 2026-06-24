@@ -1,6 +1,6 @@
-import { Role } from "@/generated/prisma/enums";
-import { getSession } from "@/utils/session";
 import { redirect } from "next/navigation";
+import { getSession } from "@/utils/session";
+import { Role } from "@/generated/prisma/enums";
 
 const ROLE_PAGE: Record<Role, string> = {
   TUTOR: "/dashboard/tutor",

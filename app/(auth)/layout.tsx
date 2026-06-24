@@ -1,7 +1,7 @@
-import { redirect } from "next/navigation";
-import { getSession } from "@/utils/session";
 import React from "react";
 import { School2 } from "lucide-react";
+import { redirect } from "next/navigation";
+import { getSession } from "@/utils/session";
 
 export default async function AuthLayout({
   children,

@@ -1,6 +1,8 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
+import SidebarSchool from "../_components/SidebarSchool";
+import DashboardLayoutShell from "../_components/DashboardLayoutShell";
 
 export default async function SchoolAdminLayout({
   children,
@@ -8,18 +10,15 @@ export default async function SchoolAdminLayout({
   children: React.ReactNode;
 }) {
   const session = await getSession();
+  const user = session?.user;
 
-  // if (!session) {
-  //   redirect("/login");
-  // }
-
-  if (!session) {
-    return <div>No session on school admin page</div>;
+  if (!session || !user) {
+    redirect("/dashboard");
   }
 
-  // if (session.user.role !== "ADMIN") {
-  //   alert("You are not authorized to view this page");
-  // }
-
-  return <>{children}</>;
+  return (
+    <DashboardLayoutShell content={<SidebarSchool user={user} />}>
+      {children}
+    </DashboardLayoutShell>
+  );
 }
