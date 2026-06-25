@@ -22,7 +22,7 @@ export default function NavMain({ items }: NavMainProps) {
   const { setOpenMobile } = useSidebar();
 
   return (
-    <SidebarMenu>
+    <SidebarMenu className="px-2">
       <div className="text-xs text-muted-foreground mb-2">MENU</div>
       <div className="space-y-2.5">
         {items.map((item) => (
