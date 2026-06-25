@@ -24,7 +24,10 @@ export default function DashboardLayoutShell({
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2" />
-            <p>Some text</p>
+            {/* FIXME: Replace below with the name of the school */}
+            <p className="truncate text-sm font-semibold">
+              Nursing and Midwifery Training College, Kumasi
+            </p>
           </div>
         </header>
         <div className="px-4">{children}</div>

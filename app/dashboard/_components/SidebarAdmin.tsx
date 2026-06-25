@@ -4,23 +4,25 @@ import {
   Sidebar,
   SidebarFooter,
   SidebarContent,
+  SidebarHeader,
 } from "@/components/ui/sidebar";
+import {
+  UsersIcon,
+  SettingsIcon,
+  Building2Icon,
+  LayoutDashboard,
+} from "lucide-react";
 import React from "react";
 import NavMain from "./NavMain";
 import NavUser from "./NavUser";
 import { User } from "@/lib/auth";
-import {
-  Building2Icon,
-  LayoutDashboard,
-  SettingsIcon,
-  UsersIcon,
-} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const adminNavigationItems = [
-  { title: "DASHBOARD", url: "#", icon: LayoutDashboard },
-  { title: "SCHOOLS", url: "#", icon: Building2Icon },
-  { title: "USERS", url: "#", icon: UsersIcon },
-  { title: "SETTINGS", url: "#", icon: SettingsIcon },
+  { title: "Dashboard", url: "#", icon: LayoutDashboard },
+  { title: "Schools", url: "#", icon: Building2Icon },
+  { title: "Users", url: "#", icon: UsersIcon },
+  { title: "Settings", url: "#", icon: SettingsIcon },
 ];
 
 export default function SidebarAdmin({
@@ -29,11 +31,29 @@ export default function SidebarAdmin({
 }: React.ComponentProps<typeof Sidebar> & { user: User }) {
   return (
     <Sidebar variant="inset" {...props}>
+      <SidebarHeader className="mb-4">
+        <div className="flex items-center gap-2">
+          <Avatar size="lg" className="rounded-md">
+            <AvatarImage
+              src={user.image ?? "https://github.com/evilrabbit.png"}
+              alt={user.name}
+              className="rounded-md"
+            />
+            <AvatarFallback className="rounded-md">ME</AvatarFallback>
+          </Avatar>
+          <div className="flex-1 leading-tight">
+            <p className="truncate text-sm font-medium">{user.name}</p>
+            <p className="truncate text-xs text-muted-foreground">
+              {user.email}
+            </p>
+          </div>
+        </div>
+      </SidebarHeader>
       <SidebarContent>
         <NavMain items={adminNavigationItems} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );

@@ -4,9 +4,7 @@ import {
   useSidebar,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarMenuButton,
 } from "@/components/ui/sidebar";
-
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 
@@ -14,7 +12,6 @@ type NavItem = {
   url: string;
   title: string;
   icon: LucideIcon;
-  isActive?: boolean;
 };
 
 interface NavMainProps {
@@ -26,20 +23,21 @@ export default function NavMain({ items }: NavMainProps) {
 
   return (
     <SidebarMenu>
-      {items.map((item) => (
-        <SidebarMenuItem key={item.title}>
-          <SidebarMenuButton
-            asChild
-            isActive={item.isActive}
-            onClick={() => setOpenMobile(false)}
-          >
-            <Link href={item.url}>
-              <item.icon />
+      <div className="text-xs text-muted-foreground mb-2">MENU</div>
+      <div className="space-y-2.5">
+        {items.map((item) => (
+          <SidebarMenuItem key={item.title}>
+            <Link
+              href={item.url}
+              className="flex items-center gap-2"
+              onClick={() => setOpenMobile(false)}
+            >
+              <item.icon className="size-5 text-muted-foreground" />
               <span>{item.title}</span>
             </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      ))}
+          </SidebarMenuItem>
+        ))}
+      </div>
     </SidebarMenu>
   );
 }
