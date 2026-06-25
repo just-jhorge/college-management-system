@@ -21,6 +21,7 @@ import { useTransition } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -46,8 +47,15 @@ export default function Login() {
         rememberMe: values.rememberMe,
       });
 
-      console.log(data, error);
-      router.refresh();
+      if (error) {
+        toast.error(error.message || "Something went wrong. Please try again");
+        return;
+      }
+
+      if (data && data.user) {
+        toast.success("Logged in successfully.");
+        router.refresh();
+      }
     });
   }
 

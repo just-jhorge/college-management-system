@@ -1,6 +1,7 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
+import { Role } from "@/generated/prisma/enums";
 import SidebarTutor from "../_components/SidebarTutor";
 import DashboardLayoutShell from "../_components/DashboardLayoutShell";
 
@@ -19,7 +20,10 @@ export default async function TutorLayout({
   }
 
   return (
-    <DashboardLayoutShell content={<SidebarTutor user={user} />}>
+    <DashboardLayoutShell
+      role={user.role as Role}
+      content={<SidebarTutor user={user} />}
+    >
       {children}
     </DashboardLayoutShell>
   );

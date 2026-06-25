@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 
 import "../css/globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 
 const playfairDisplayHeading = Playfair_Display({
   variable: "--font-heading",
@@ -33,7 +35,10 @@ export default function RootLayout({
         playfairDisplayHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <TooltipProvider>{children}</TooltipProvider>
+        <Toaster richColors />
+      </body>
     </html>
   );
 }

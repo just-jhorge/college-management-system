@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { useState, useTransition } from "react";
+import { toast } from "sonner";
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -22,8 +23,15 @@ export default function LogoutButton() {
   function signout() {
     startTransition(async () => {
       const { data, error } = await authClient.signOut();
-      console.log(data, error);
-      router.refresh();
+
+      if (error) {
+        toast.error("Something went wrong. Please try again.");
+      }
+
+      if (data?.success) {
+        toast.success("Logged out successfully");
+        router.refresh();
+      }
     });
   }
 

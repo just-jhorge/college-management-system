@@ -5,16 +5,19 @@ import {
   SidebarTrigger,
   SidebarProvider,
 } from "@/components/ui/sidebar";
+import { Role } from "@/generated/prisma/enums";
 import React, { PropsWithChildren } from "react";
 import { Separator } from "@/components/ui/separator";
 
 interface DashboardLayoutShellProps extends PropsWithChildren {
   content: React.ReactNode;
+  role: Role;
 }
 
 export default function DashboardLayoutShell({
   children,
   content,
+  role,
 }: DashboardLayoutShellProps) {
   return (
     <SidebarProvider>
@@ -25,8 +28,10 @@ export default function DashboardLayoutShell({
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2" />
             {/* FIXME: Replace below with the name of the school */}
-            <p className="truncate text-sm font-semibold">
-              Nursing and Midwifery Training College, Kumasi
+            <p className="truncate text-sm">
+              {role !== "SUPER_ADMIN"
+                ? "Nursing and Midwifery Training College, Kumasi"
+                : "Super Admin Account"}
             </p>
           </div>
         </header>

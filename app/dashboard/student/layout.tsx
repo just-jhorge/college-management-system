@@ -1,8 +1,9 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
-import DashboardLayoutShell from "../_components/DashboardLayoutShell";
+import { Role } from "@/generated/prisma/enums";
 import SidebarStudent from "../_components/SidebarStudent";
+import DashboardLayoutShell from "../_components/DashboardLayoutShell";
 
 export default async function StudentLayout({
   children,
@@ -19,7 +20,10 @@ export default async function StudentLayout({
   }
 
   return (
-    <DashboardLayoutShell content={<SidebarStudent user={user} />}>
+    <DashboardLayoutShell
+      role={user.role as Role}
+      content={<SidebarStudent user={user} />}
+    >
       {children}
     </DashboardLayoutShell>
   );

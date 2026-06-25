@@ -1,6 +1,7 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
+import { Role } from "@/generated/prisma/enums";
 import SidebarSchool from "../_components/SidebarSchool";
 import DashboardLayoutShell from "../_components/DashboardLayoutShell";
 
@@ -17,7 +18,10 @@ export default async function SchoolAdminLayout({
   }
 
   return (
-    <DashboardLayoutShell content={<SidebarSchool user={user} />}>
+    <DashboardLayoutShell
+      role={user.role as Role}
+      content={<SidebarSchool user={user} />}
+    >
       {children}
     </DashboardLayoutShell>
   );

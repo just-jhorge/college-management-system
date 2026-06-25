@@ -19,6 +19,8 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { authClient } from "@/lib/auth-client";
 import { useTransition } from "react";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string(),
@@ -29,6 +31,7 @@ const formSchema = z.object({
 });
 
 export default function Register() {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,10 +54,17 @@ export default function Register() {
         contact: values.contact,
         password: values.password,
         role: values.role,
-        callbackURL: "/dashboard",
       });
 
-      console.log(data, error);
+      if (error) {
+        toast.error(error.message || "Something went wrong. Please try again.");
+        return;
+      }
+
+      if (data && data.user) {
+        toast.success("Account created successfully.");
+        router.push("/dashboard");
+      }
     });
   }
 

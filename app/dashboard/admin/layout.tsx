@@ -1,8 +1,9 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
-import DashboardLayoutShell from "../_components/DashboardLayoutShell";
+import { Role } from "@/generated/prisma/enums";
 import SidebarAdmin from "../_components/SidebarAdmin";
+import DashboardLayoutShell from "../_components/DashboardLayoutShell";
 
 export default async function SuperAdminLayout({
   children,
@@ -19,7 +20,10 @@ export default async function SuperAdminLayout({
   }
 
   return (
-    <DashboardLayoutShell content={<SidebarAdmin user={user} />}>
+    <DashboardLayoutShell
+      role={user.role as Role}
+      content={<SidebarAdmin user={user} />}
+    >
       {children}
     </DashboardLayoutShell>
   );

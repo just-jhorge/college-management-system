@@ -1,6 +1,7 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/utils/session";
+import { Role } from "@/generated/prisma/enums";
 import SidebarAccountant from "../_components/SidebarAccountant";
 import DashboardLayoutShell from "../_components/DashboardLayoutShell";
 
@@ -19,7 +20,10 @@ export default async function AccountantLayout({
   }
 
   return (
-    <DashboardLayoutShell content={<SidebarAccountant user={user} />}>
+    <DashboardLayoutShell
+      role={user.role as Role}
+      content={<SidebarAccountant user={user} />}
+    >
       {children}
     </DashboardLayoutShell>
   );
