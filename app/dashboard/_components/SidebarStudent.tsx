@@ -19,10 +19,10 @@ import { User } from "@/lib/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const studentNavigationItems = [
-  { title: "DASHBOARD", url: "#", icon: LayoutDashboard },
-  { title: "SEMESTER", url: "#", icon: GraduationCap },
-  { title: "INVOICES", url: "#", icon: ReceiptTextIcon },
-  { title: "SETTINGS", url: "#", icon: SettingsIcon },
+  { title: "Dashboard", url: "#", icon: LayoutDashboard },
+  { title: "Semester", url: "#", icon: GraduationCap },
+  { title: "Invoices", url: "#", icon: ReceiptTextIcon },
+  { title: "Settings", url: "#", icon: SettingsIcon },
 ];
 
 export default function SidebarStudent({
