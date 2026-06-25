@@ -15,7 +15,10 @@ export const auth = betterAuth({
       contact: { type: "string" },
     },
   },
-  trustedOrigins: ["http://localhost:3000"],
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://collegerrpreview.vercel.app",
+  ],
 });
 
 export type Session = typeof auth.$Infer.Session;
