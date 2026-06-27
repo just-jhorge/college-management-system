@@ -15,17 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { SchoolStatus } from "@/generated/prisma/enums";
-import {
-  AlertTriangle,
-  ArrowUpDown,
-  MoreHorizontal,
-  TrashIcon,
-} from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { ArrowUpDown, MoreHorizontal, TrashIcon } from "lucide-react";
 
 export type School = {
   id: string;
@@ -48,45 +38,24 @@ export const columns: ColumnDef<School>[] = [
   {
     accessorKey: "name",
     header: "Institution name",
-    cell: ({ row }) => {
-      const name = row.original.name;
-      const isPending = row.original.status === "PENDING";
-      return (
-        <div className="flex items-center gap-2">
-          {isPending && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <AlertTriangle className="size-4 text-red-400" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Please assign a school admin</p>
-              </TooltipContent>
-            </Tooltip>
-          )}
-          {name}
-        </div>
-      );
-    },
   },
   {
     accessorKey: "primaryAdmin",
     header: "School Admin",
     cell: ({ row }) => {
       const primaryAdmin = row.original.primaryAdmin;
-      if (!primaryAdmin) {
-        return (
-          <div className="flex items-center gap-1">
+
+      return (
+        <>
+          {primaryAdmin ? (
+            <h4 className="text-sm font-medium">{primaryAdmin.name}</h4>
+          ) : (
             <p className="text-muted-foreground text-sm italic">
               No admin assigned
             </p>
-            -
-            <Button size="xs" variant="outline" className="text-sm">
-              Assign admin
-            </Button>
-          </div>
-        );
-      }
-      return <h4 className="text-sm font-medium">{primaryAdmin.name}</h4>;
+          )}
+        </>
+      );
     },
   },
   {
@@ -122,7 +91,9 @@ export const columns: ColumnDef<School>[] = [
   {
     id: "actions",
     header: "Action",
-    cell: () => {
+    cell: ({ row }) => {
+      const isPending = !!row.original.primaryAdmin;
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -133,6 +104,12 @@ export const columns: ColumnDef<School>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            {!isPending && (
+              <>
+                <DropdownMenuItem>Assign Admin</DropdownMenuItem>
+                <DropdownMenuSeparator />
+              </>
+            )}
             <DropdownMenuItem>View Details</DropdownMenuItem>
             <DropdownMenuItem>Suspend</DropdownMenuItem>
             <DropdownMenuSeparator />

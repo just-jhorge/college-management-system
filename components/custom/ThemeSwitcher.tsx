@@ -1,7 +1,6 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Separator } from "../ui/separator";
 
 export default function ThemeSwitcher() {
   const { setTheme } = useTheme();
@@ -37,7 +36,7 @@ export default function ThemeSwitcher() {
         >
           <div className="flex h-full w-full">
             <div className="w-full h-full relative bg-neutral-200">
-              <div className="absolute flex items-center justify-center h-[1.7rem] p-1 bottom-0 left-0 rounded-lg bg-white">
+              <div className="absolute flex items-center justify-center h-[1.7rem] p-1 bottom-0 text-black left-0 rounded-lg bg-white">
                 Aa
               </div>
             </div>
