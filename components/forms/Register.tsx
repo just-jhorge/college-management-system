@@ -6,21 +6,22 @@ import {
   CardHeader,
   CardContent,
   CardDescription,
+  CardFooter,
 } from "@/components/ui/card";
 
 import { z } from "zod";
+import { toast } from "sonner";
+import { useTransition } from "react";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { InputField } from "../fields/InputField";
+import { FieldGroup } from "@/components/ui/field";
 import { SelectField } from "../fields/SelectField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordField } from "../fields/PasswordField";
-import { Field, FieldGroup } from "@/components/ui/field";
-import { authClient } from "@/lib/auth-client";
-import { useTransition } from "react";
-import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string(),
@@ -69,7 +70,7 @@ export default function Register() {
   }
 
   return (
-    <div className="flex flex-col gap-6 min-w-sm lg:min-w-88">
+    <div className="flex flex-col gap-6 min-w-sm">
       <Card>
         <CardHeader>
           <CardTitle className="text-sm">Login to your account</CardTitle>
@@ -77,8 +78,8 @@ export default function Register() {
             Enter your email and password below to login to your account
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+          <CardContent>
             <FieldGroup>
               <InputField
                 name="name"
@@ -121,15 +122,15 @@ export default function Register() {
                 placeholder="******"
                 control={form.control}
               />
-              <Field>
-                <Button type="submit" disabled={isPending}>
-                  {isPending && <Loader2 className="animate-spin" />}
-                  {isPending ? "Signing up..." : "Register"}
-                </Button>
-              </Field>
             </FieldGroup>
-          </form>
-        </CardContent>
+          </CardContent>
+          <CardFooter>
+            <Button type="submit" className="w-full" disabled={isPending}>
+              {isPending && <Loader2 className="animate-spin" />}
+              {isPending ? "Signing up..." : "Register"}
+            </Button>
+          </CardFooter>
+        </form>
       </Card>
     </div>
   );

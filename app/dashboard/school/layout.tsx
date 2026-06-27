@@ -13,8 +13,10 @@ export default async function SchoolAdminLayout({
   const session = await getSession();
   const user = session?.user;
 
-  if (!session || !user) {
-    redirect("/dashboard");
+  if (!session || !user) redirect("/login");
+
+  if (session.user.requiresPasswordChange) {
+    redirect("/update-password");
   }
 
   return (

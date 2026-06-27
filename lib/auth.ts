@@ -13,6 +13,11 @@ export const auth = betterAuth({
     additionalFields: {
       role: { type: "string", defaultValue: "STUDENT" satisfies Role },
       contact: { type: "string" },
+      requiresPasswordChange: {
+        type: "boolean",
+        defaultValue: true,
+        input: false,
+      },
     },
   },
   trustedOrigins: [

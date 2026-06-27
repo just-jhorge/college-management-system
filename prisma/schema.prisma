@@ -44,18 +44,19 @@ model School {
 }
 
 model User {
-  id            String   @id @default(cuid())
-  name          String
-  email         String
-  emailVerified Boolean  @default(false)
-  contact       String
-  image         String?
-  role          Role
-  schoolId      String?
-  school        School?  @relation("SchoolUsers", fields: [schoolId], references: [id])
-  adminOfSchool School?  @relation("SchoolAdmin")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id                     String   @id @default(cuid())
+  name                   String
+  email                  String
+  emailVerified          Boolean  @default(false)
+  requiresPasswordChange Boolean  @default(true)
+  contact                String
+  image                  String?
+  role                   Role
+  schoolId               String?
+  school                 School?  @relation("SchoolUsers", fields: [schoolId], references: [id])
+  adminOfSchool          School?  @relation("SchoolAdmin")
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 
   sessions Session[]
   accounts Account[]

@@ -15,6 +15,10 @@ export default async function SuperAdminLayout({
 
   if (!session || !user) redirect("/login");
 
+  if (session.user.requiresPasswordChange) {
+    redirect("/update-password");
+  }
+
   if (session.user.role !== "SUPER_ADMIN") {
     redirect("/dashboard");
   }

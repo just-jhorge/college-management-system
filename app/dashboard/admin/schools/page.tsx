@@ -29,21 +29,19 @@ export default async function Page() {
   }));
 
   return (
-    <div>
-      <DataTable
-        columns={columns}
-        data={schools}
-        filterColumn="name"
-        filterPlaceholder="Search for a school..."
-        toolbar={
-          <>
-            <Button className="bg-green-700 hover:bg-green-700 text-white">
-              <FileSpreadsheet /> Export
-            </Button>
-            <AddSchoolButton />
-          </>
-        }
-      />
-    </div>
+    <DataTable
+      columns={columns}
+      data={schools}
+      filterColumn="name"
+      filterPlaceholder="Search for a school..."
+      toolbar={
+        <>
+          <Button className="bg-green-700 hover:bg-green-700 text-white">
+            <FileSpreadsheet /> Export
+          </Button>
+          <AddSchoolButton />
+        </>
+      }
+    />
   );
 }

@@ -21,7 +21,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const adminNavigationItems = [
   { title: "Dashboard", url: "#", icon: LayoutDashboard },
   { title: "Schools", url: "/dashboard/admin/schools", icon: Building2Icon },
-  { title: "Users", url: "#", icon: UsersIcon },
+  { title: "Users", url: "/dashboard/admin/users", icon: UsersIcon },
   { title: "Settings", url: "#", icon: SettingsIcon },
 ];
 
