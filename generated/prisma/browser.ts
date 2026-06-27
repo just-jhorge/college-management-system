@@ -42,28 +42,3 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
-/**
- * Model StudentProfile
- * 
- */
-export type StudentProfile = Prisma.StudentProfileModel
-/**
- * Model TutorProfile
- * 
- */
-export type TutorProfile = Prisma.TutorProfileModel
-/**
- * Model Programme
- * 
- */
-export type Programme = Prisma.ProgrammeModel
-/**
- * Model Semester
- * 
- */
-export type Semester = Prisma.SemesterModel
-/**
- * Model Course
- * 
- */
-export type Course = Prisma.CourseModel

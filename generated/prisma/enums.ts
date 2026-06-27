@@ -9,6 +9,15 @@
 * 🟢 You can import this file directly.
 */
 
+export const SchoolStatus = {
+  ACTIVE: 'ACTIVE',
+  PENDING: 'PENDING',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type SchoolStatus = (typeof SchoolStatus)[keyof typeof SchoolStatus]
+
+
 export const Role = {
   SUPER_ADMIN: 'SUPER_ADMIN',
   ADMIN: 'ADMIN',

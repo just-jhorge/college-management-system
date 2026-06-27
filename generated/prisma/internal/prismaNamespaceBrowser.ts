@@ -55,12 +55,7 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification',
-  StudentProfile: 'StudentProfile',
-  TutorProfile: 'TutorProfile',
-  Programme: 'Programme',
-  Semester: 'Semester',
-  Course: 'Course'
+  Verification: 'Verification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -82,6 +77,9 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const SchoolScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  slug: 'slug',
+  status: 'status',
+  adminId: 'adminId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -148,71 +146,6 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
-
-
-export const StudentProfileScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  studentId: 'studentId',
-  programmeId: 'programmeId',
-  currentYear: 'currentYear',
-  enrolledAt: 'enrolledAt'
-} as const
-
-export type StudentProfileScalarFieldEnum = (typeof StudentProfileScalarFieldEnum)[keyof typeof StudentProfileScalarFieldEnum]
-
-
-export const TutorProfileScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  department: 'department',
-  specialization: 'specialization'
-} as const
-
-export type TutorProfileScalarFieldEnum = (typeof TutorProfileScalarFieldEnum)[keyof typeof TutorProfileScalarFieldEnum]
-
-
-export const ProgrammeScalarFieldEnum = {
-  id: 'id',
-  schoolId: 'schoolId',
-  name: 'name',
-  code: 'code',
-  durationYears: 'durationYears',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ProgrammeScalarFieldEnum = (typeof ProgrammeScalarFieldEnum)[keyof typeof ProgrammeScalarFieldEnum]
-
-
-export const SemesterScalarFieldEnum = {
-  id: 'id',
-  schoolId: 'schoolId',
-  name: 'name',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  registrationStartDate: 'registrationStartDate',
-  registrationEndDate: 'registrationEndDate',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type SemesterScalarFieldEnum = (typeof SemesterScalarFieldEnum)[keyof typeof SemesterScalarFieldEnum]
-
-
-export const CourseScalarFieldEnum = {
-  id: 'id',
-  schoolId: 'schoolId',
-  programmeId: 'programmeId',
-  code: 'code',
-  title: 'title',
-  year: 'year',
-  creditHours: 'creditHours',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
 
 
 export const SortOrder = {

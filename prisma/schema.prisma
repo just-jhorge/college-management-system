@@ -7,6 +7,12 @@ datasource db {
   provider = "postgresql"
 }
 
+enum SchoolStatus {
+  ACTIVE
+  PENDING
+  SUSPENDED
+}
+
 enum Role {
   SUPER_ADMIN
   ADMIN
@@ -23,39 +29,36 @@ enum InvoiceStatus {
 }
 
 model School {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String       @id @default(cuid())
+  name      String       @unique
+  slug      String
+  status    SchoolStatus @default(PENDING)
+  adminId   String?      @unique
+  admin     User?        @relation("SchoolAdmin", fields: [adminId], references: [id])
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
 
-  users      User[]
-  programmes Programme[]
-  semesters  Semester[]
-  courses    Course[]
-  // bills      Bill[]
+  users User[] @relation("SchoolUsers")
 
   @@map("schools")
 }
 
 model User {
-  id             String          @id @default(cuid())
-  name           String
-  email          String
-  emailVerified  Boolean         @default(false)
-  contact        String
-  image          String?
-  role           Role
-  schoolId       String?
-  school         School?         @relation(fields: [schoolId], references: [id])
-  tutorProfile   TutorProfile?
-  studentProfile StudentProfile?
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  emailVerified Boolean  @default(false)
+  contact       String
+  image         String?
+  role          Role
+  schoolId      String?
+  school        School?  @relation("SchoolUsers", fields: [schoolId], references: [id])
+  adminOfSchool School?  @relation("SchoolAdmin")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   sessions Session[]
   accounts Account[]
-  // createdBills  Bill[]           @relation("BillCreatedBy")
-  // taughtCourses SemesterCourse[] @relation("CourseTutor")
 
   @@unique([email])
   @@index([schoolId])
@@ -108,87 +111,4 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
-}
-
-model StudentProfile {
-  id          String    @id @default(cuid())
-  userId      String    @unique
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  studentId   String //school-issued index number, unique per school
-  programmeId String
-  programme   Programme @relation(fields: [programmeId], references: [id])
-  currentYear Int       @default(1)
-  enrolledAt  DateTime  @default(now())
-
-  // enrollments Enrollment[]
-  // invoices    StudentInvoice[]
-
-  @@unique([programmeId, studentId])
-  @@map("students_profile")
-}
-
-model TutorProfile {
-  id             String  @id @default(cuid())
-  userId         String  @unique
-  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  department     String
-  specialization String?
-
-  @@map("tutors_profile")
-}
-
-model Programme {
-  id            String   @id @default(cuid())
-  schoolId      String
-  school        School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-  name          String
-  code          String
-  durationYears Int      @default(3)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  students StudentProfile[]
-  courses  Course[]
-  // bills    BillProgramme[]
-
-  @@unique([schoolId, code])
-  @@map("programmes")
-}
-
-model Semester {
-  id                    String   @id @default(cuid())
-  schoolId              String
-  school                School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-  name                  String
-  startDate             DateTime
-  endDate               DateTime
-  registrationStartDate DateTime
-  registrationEndDate   DateTime
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
-
-  // bills           Bill[]
-  // semesterCourses SemesterCourse[]
-
-  @@unique([schoolId, name])
-  @@map("semesters")
-}
-
-model Course {
-  id          String    @id @default(cuid())
-  schoolId    String
-  school      School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-  programmeId String
-  programme   Programme @relation(fields: [programmeId], references: [id], onDelete: Cascade)
-  code        String
-  title       String
-  year        Int
-  creditHours Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  // semesterCourses SemesterCourse[]
-
-  @@unique([schoolId, code])
-  @@map("courses")
 }
