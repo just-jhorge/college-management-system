@@ -22,6 +22,8 @@ export default async function Page() {
     institution: u.school?.name ?? null,
   }));
 
+  console.log(rawUsers);
+
   return (
     <DataTable
       columns={columns}

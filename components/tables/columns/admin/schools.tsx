@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
@@ -49,12 +50,12 @@ export const columns: ColumnDef<School>[] = [
       return (
         <>
           {primaryAdmin ? (
-            <div className="leading-tight">
-              <h4 className="text-sm font-medium">{primaryAdmin.name}</h4>
+            <Link href="#" className="space-x-1">
+              <span className="text-sm font-medium">{primaryAdmin.name}</span>
               <span className="text-sm truncate text-muted-foreground">
-                {primaryAdmin.email}
+                ({primaryAdmin.email})
               </span>
-            </div>
+            </Link>
           ) : (
             <AssignAdminButton
               schoolId={row.original.id}
@@ -92,7 +93,7 @@ export const columns: ColumnDef<School>[] = [
     header: "Created At",
     cell: ({ row }) => {
       const createdAt = row.original.createdAt;
-      return <div>{format(createdAt, "eeee, dd MMMM yyyy HH:mm:ss")}</div>;
+      return <div>{format(createdAt, "eee, dd MMM yyyy HH:mm")}</div>;
     },
   },
   {

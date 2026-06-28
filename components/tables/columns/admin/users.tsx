@@ -40,7 +40,17 @@ export const columns: ColumnDef<User>[] = [
     header: "Institution",
     cell: ({ row }) => {
       const institution = row.original.institution;
-      return <p>{institution ? institution : "Not found."}</p>;
+      return (
+        <p>
+          {institution ? (
+            institution
+          ) : (
+            <span className="text-sm text-muted-foreground">
+              No attached school
+            </span>
+          )}
+        </p>
+      );
     },
   },
   {
@@ -52,7 +62,7 @@ export const columns: ColumnDef<User>[] = [
     header: "Joined",
     cell: ({ row }) => {
       const createdAt = row.original.createdAt;
-      return <p>{format(createdAt, "EEE, dd MMMM yyyy HH:mm:ss")}</p>;
+      return <p>{format(createdAt, "EEE, dd MMM yyyy")}</p>;
     },
   },
 ];

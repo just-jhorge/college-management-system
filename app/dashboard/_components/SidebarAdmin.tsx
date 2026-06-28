@@ -11,6 +11,8 @@ import {
   SettingsIcon,
   Building2Icon,
   LayoutDashboard,
+  GraduationCap,
+  BookOpen,
 } from "lucide-react";
 import React from "react";
 import NavMain from "./NavMain";
@@ -22,6 +24,12 @@ const adminNavigationItems = [
   { title: "Dashboard", url: "#", icon: LayoutDashboard },
   { title: "Schools", url: "/dashboard/admin/schools", icon: Building2Icon },
   { title: "Users", url: "/dashboard/admin/users", icon: UsersIcon },
+  {
+    title: "Programmes",
+    url: "/dashboard/admin/programmes",
+    icon: GraduationCap,
+  },
+  { title: "Courses", url: "/dashboard/admin/courses", icon: BookOpen },
   { title: "Settings", url: "#", icon: SettingsIcon },
 ];
 

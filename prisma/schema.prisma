@@ -31,14 +31,15 @@ enum InvoiceStatus {
 model School {
   id        String       @id @default(cuid())
   name      String       @unique
-  slug      String
+  slug      String       @unique
   status    SchoolStatus @default(PENDING_SETUP)
   adminId   String?      @unique
-  admin     User?        @relation("SchoolAdmin", fields: [adminId], references: [id])
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
 
-  users User[] @relation("SchoolUsers")
+  programmesOffered ProgrammeOffering[]
+  members           User[]              @relation("SchoolMembers")
+  admin             User?               @relation("SchoolAdmin", fields: [adminId], references: [id], onDelete: SetNull)
 
   @@map("schools")
 }
@@ -46,22 +47,22 @@ model School {
 model User {
   id                     String   @id @default(cuid())
   name                   String
-  email                  String
+  email                  String   @unique
   emailVerified          Boolean  @default(false)
   requiresPasswordChange Boolean  @default(true)
   contact                String
   image                  String?
-  role                   Role
   schoolId               String?
-  school                 School?  @relation("SchoolUsers", fields: [schoolId], references: [id])
-  adminOfSchool          School?  @relation("SchoolAdmin")
+  role                   Role
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 
   sessions Session[]
   accounts Account[]
 
-  @@unique([email])
+  adminOfSchool School? @relation("SchoolAdmin")
+  school        School? @relation("SchoolMembers", fields: [schoolId], references: [id])
+
   @@index([schoolId])
   @@map("user")
 }
@@ -112,4 +113,45 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model ProgrammeType {
+  id        String   @id @default(cuid())
+  name      String
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  courses   Course[]
+  offerings ProgrammeOffering[]
+
+  @@map("programme_types")
+}
+
+model ProgrammeOffering {
+  id              String   @id @default(cuid())
+  schoolId        String
+  programmeTypeId String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  school        School        @relation(fields: [schoolId], references: [id])
+  programmeType ProgrammeType @relation(fields: [programmeTypeId], references: [id])
+
+  @@unique([schoolId, programmeTypeId])
+  @@map("programme_offerings")
+}
+
+model Course {
+  id              String   @id @default(cuid())
+  title           String
+  code            String   @unique
+  programmeTypeId String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  programmeType ProgrammeType @relation(fields: [programmeTypeId], references: [id])
+
+  @@unique([programmeTypeId, code])
+  @@map("courses")
 }

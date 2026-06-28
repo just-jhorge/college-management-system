@@ -13,7 +13,7 @@ export default async function Page() {
       slug: true,
       status: true,
       createdAt: true,
-      _count: { select: { users: true } },
+      _count: { select: { members: { where: { role: "STUDENT" } } } },
       admin: { select: { name: true, email: true } },
     },
     orderBy: { createdAt: "desc" },
@@ -24,7 +24,7 @@ export default async function Page() {
     name: s.name,
     status: s.status,
     createdAt: s.createdAt,
-    studentCount: s._count.users,
+    studentCount: s._count.members,
     primaryAdmin: s.admin ?? null,
   }));
 

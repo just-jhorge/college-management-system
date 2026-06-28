@@ -55,7 +55,10 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  ProgrammeType: 'ProgrammeType',
+  ProgrammeOffering: 'ProgrammeOffering',
+  Course: 'Course'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -95,8 +98,8 @@ export const UserScalarFieldEnum = {
   requiresPasswordChange: 'requiresPasswordChange',
   contact: 'contact',
   image: 'image',
-  role: 'role',
   schoolId: 'schoolId',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -147,6 +150,40 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const ProgrammeTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProgrammeTypeScalarFieldEnum = (typeof ProgrammeTypeScalarFieldEnum)[keyof typeof ProgrammeTypeScalarFieldEnum]
+
+
+export const ProgrammeOfferingScalarFieldEnum = {
+  id: 'id',
+  schoolId: 'schoolId',
+  programmeTypeId: 'programmeTypeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProgrammeOfferingScalarFieldEnum = (typeof ProgrammeOfferingScalarFieldEnum)[keyof typeof ProgrammeOfferingScalarFieldEnum]
+
+
+export const CourseScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  code: 'code',
+  programmeTypeId: 'programmeTypeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
 
 
 export const SortOrder = {

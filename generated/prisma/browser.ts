@@ -42,3 +42,18 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model ProgrammeType
+ * 
+ */
+export type ProgrammeType = Prisma.ProgrammeTypeModel
+/**
+ * Model ProgrammeOffering
+ * 
+ */
+export type ProgrammeOffering = Prisma.ProgrammeOfferingModel
+/**
+ * Model Course
+ * 
+ */
+export type Course = Prisma.CourseModel
