@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma";
-import { columns, User } from "./columns";
 import { DataTable } from "@/components/tables/DataTable";
 import { Button } from "@/components/ui/button";
 import { FileSpreadsheet } from "lucide-react";
 import AddUserButton from "@/components/buttons/AddUserButton";
+import { columns, User } from "@/components/tables/columns/admin/users";
 
 export default async function Page() {
   const rawUsers = await prisma.user.findMany({
