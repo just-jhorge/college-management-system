@@ -20,14 +20,27 @@ export type ProgrammeTypeModel = runtime.Types.Result.DefaultSelection<Prisma.$P
 
 export type AggregateProgrammeType = {
   _count: ProgrammeTypeCountAggregateOutputType | null
+  _avg: ProgrammeTypeAvgAggregateOutputType | null
+  _sum: ProgrammeTypeSumAggregateOutputType | null
   _min: ProgrammeTypeMinAggregateOutputType | null
   _max: ProgrammeTypeMaxAggregateOutputType | null
+}
+
+export type ProgrammeTypeAvgAggregateOutputType = {
+  durationYears: number | null
+}
+
+export type ProgrammeTypeSumAggregateOutputType = {
+  durationYears: number | null
 }
 
 export type ProgrammeTypeMinAggregateOutputType = {
   id: string | null
   name: string | null
   code: string | null
+  qualification: $Enums.ProgrammeQualification | null
+  mode: $Enums.ProgrammeMode | null
+  durationYears: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -36,6 +49,9 @@ export type ProgrammeTypeMaxAggregateOutputType = {
   id: string | null
   name: string | null
   code: string | null
+  qualification: $Enums.ProgrammeQualification | null
+  mode: $Enums.ProgrammeMode | null
+  durationYears: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,16 +60,30 @@ export type ProgrammeTypeCountAggregateOutputType = {
   id: number
   name: number
   code: number
+  qualification: number
+  mode: number
+  durationYears: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
 
+export type ProgrammeTypeAvgAggregateInputType = {
+  durationYears?: true
+}
+
+export type ProgrammeTypeSumAggregateInputType = {
+  durationYears?: true
+}
+
 export type ProgrammeTypeMinAggregateInputType = {
   id?: true
   name?: true
   code?: true
+  qualification?: true
+  mode?: true
+  durationYears?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -62,6 +92,9 @@ export type ProgrammeTypeMaxAggregateInputType = {
   id?: true
   name?: true
   code?: true
+  qualification?: true
+  mode?: true
+  durationYears?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -70,6 +103,9 @@ export type ProgrammeTypeCountAggregateInputType = {
   id?: true
   name?: true
   code?: true
+  qualification?: true
+  mode?: true
+  durationYears?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -113,6 +149,18 @@ export type ProgrammeTypeAggregateArgs<ExtArgs extends runtime.Types.Extensions.
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ProgrammeTypeAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ProgrammeTypeSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ProgrammeTypeMinAggregateInputType
@@ -143,6 +191,8 @@ export type ProgrammeTypeGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   _count?: ProgrammeTypeCountAggregateInputType | true
+  _avg?: ProgrammeTypeAvgAggregateInputType
+  _sum?: ProgrammeTypeSumAggregateInputType
   _min?: ProgrammeTypeMinAggregateInputType
   _max?: ProgrammeTypeMaxAggregateInputType
 }
@@ -151,9 +201,14 @@ export type ProgrammeTypeGroupByOutputType = {
   id: string
   name: string
   code: string
+  qualification: $Enums.ProgrammeQualification
+  mode: $Enums.ProgrammeMode
+  durationYears: number
   createdAt: Date
   updatedAt: Date
   _count: ProgrammeTypeCountAggregateOutputType | null
+  _avg: ProgrammeTypeAvgAggregateOutputType | null
+  _sum: ProgrammeTypeSumAggregateOutputType | null
   _min: ProgrammeTypeMinAggregateOutputType | null
   _max: ProgrammeTypeMaxAggregateOutputType | null
 }
@@ -180,6 +235,9 @@ export type ProgrammeTypeWhereInput = {
   id?: Prisma.StringFilter<"ProgrammeType"> | string
   name?: Prisma.StringFilter<"ProgrammeType"> | string
   code?: Prisma.StringFilter<"ProgrammeType"> | string
+  qualification?: Prisma.EnumProgrammeQualificationFilter<"ProgrammeType"> | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFilter<"ProgrammeType"> | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFilter<"ProgrammeType"> | number
   createdAt?: Prisma.DateTimeFilter<"ProgrammeType"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProgrammeType"> | Date | string
   courses?: Prisma.CourseListRelationFilter
@@ -190,6 +248,9 @@ export type ProgrammeTypeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  qualification?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  durationYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   courses?: Prisma.CourseOrderByRelationAggregateInput
@@ -203,6 +264,9 @@ export type ProgrammeTypeWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProgrammeTypeWhereInput[]
   NOT?: Prisma.ProgrammeTypeWhereInput | Prisma.ProgrammeTypeWhereInput[]
   name?: Prisma.StringFilter<"ProgrammeType"> | string
+  qualification?: Prisma.EnumProgrammeQualificationFilter<"ProgrammeType"> | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFilter<"ProgrammeType"> | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFilter<"ProgrammeType"> | number
   createdAt?: Prisma.DateTimeFilter<"ProgrammeType"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProgrammeType"> | Date | string
   courses?: Prisma.CourseListRelationFilter
@@ -213,11 +277,16 @@ export type ProgrammeTypeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  qualification?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  durationYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProgrammeTypeCountOrderByAggregateInput
+  _avg?: Prisma.ProgrammeTypeAvgOrderByAggregateInput
   _max?: Prisma.ProgrammeTypeMaxOrderByAggregateInput
   _min?: Prisma.ProgrammeTypeMinOrderByAggregateInput
+  _sum?: Prisma.ProgrammeTypeSumOrderByAggregateInput
 }
 
 export type ProgrammeTypeScalarWhereWithAggregatesInput = {
@@ -227,6 +296,9 @@ export type ProgrammeTypeScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"ProgrammeType"> | string
   name?: Prisma.StringWithAggregatesFilter<"ProgrammeType"> | string
   code?: Prisma.StringWithAggregatesFilter<"ProgrammeType"> | string
+  qualification?: Prisma.EnumProgrammeQualificationWithAggregatesFilter<"ProgrammeType"> | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeWithAggregatesFilter<"ProgrammeType"> | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntWithAggregatesFilter<"ProgrammeType"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProgrammeType"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProgrammeType"> | Date | string
 }
@@ -235,6 +307,9 @@ export type ProgrammeTypeCreateInput = {
   id?: string
   name: string
   code: string
+  qualification?: $Enums.ProgrammeQualification
+  mode?: $Enums.ProgrammeMode
+  durationYears: number
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseCreateNestedManyWithoutProgrammeTypeInput
@@ -245,6 +320,9 @@ export type ProgrammeTypeUncheckedCreateInput = {
   id?: string
   name: string
   code: string
+  qualification?: $Enums.ProgrammeQualification
+  mode?: $Enums.ProgrammeMode
+  durationYears: number
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutProgrammeTypeInput
@@ -255,6 +333,9 @@ export type ProgrammeTypeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUpdateManyWithoutProgrammeTypeNestedInput
@@ -265,6 +346,9 @@ export type ProgrammeTypeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUncheckedUpdateManyWithoutProgrammeTypeNestedInput
@@ -275,6 +359,9 @@ export type ProgrammeTypeCreateManyInput = {
   id?: string
   name: string
   code: string
+  qualification?: $Enums.ProgrammeQualification
+  mode?: $Enums.ProgrammeMode
+  durationYears: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -283,6 +370,9 @@ export type ProgrammeTypeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -291,6 +381,9 @@ export type ProgrammeTypeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -299,14 +392,24 @@ export type ProgrammeTypeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  qualification?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  durationYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProgrammeTypeAvgOrderByAggregateInput = {
+  durationYears?: Prisma.SortOrder
 }
 
 export type ProgrammeTypeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  qualification?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  durationYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -315,13 +418,36 @@ export type ProgrammeTypeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  qualification?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  durationYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProgrammeTypeSumOrderByAggregateInput = {
+  durationYears?: Prisma.SortOrder
 }
 
 export type ProgrammeTypeScalarRelationFilter = {
   is?: Prisma.ProgrammeTypeWhereInput
   isNot?: Prisma.ProgrammeTypeWhereInput
+}
+
+export type EnumProgrammeQualificationFieldUpdateOperationsInput = {
+  set?: $Enums.ProgrammeQualification
+}
+
+export type EnumProgrammeModeFieldUpdateOperationsInput = {
+  set?: $Enums.ProgrammeMode
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type ProgrammeTypeCreateNestedOneWithoutOfferingsInput = {
@@ -356,6 +482,9 @@ export type ProgrammeTypeCreateWithoutOfferingsInput = {
   id?: string
   name: string
   code: string
+  qualification?: $Enums.ProgrammeQualification
+  mode?: $Enums.ProgrammeMode
+  durationYears: number
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseCreateNestedManyWithoutProgrammeTypeInput
@@ -365,6 +494,9 @@ export type ProgrammeTypeUncheckedCreateWithoutOfferingsInput = {
   id?: string
   name: string
   code: string
+  qualification?: $Enums.ProgrammeQualification
+  mode?: $Enums.ProgrammeMode
+  durationYears: number
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutProgrammeTypeInput
@@ -390,6 +522,9 @@ export type ProgrammeTypeUpdateWithoutOfferingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUpdateManyWithoutProgrammeTypeNestedInput
@@ -399,6 +534,9 @@ export type ProgrammeTypeUncheckedUpdateWithoutOfferingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUncheckedUpdateManyWithoutProgrammeTypeNestedInput
@@ -408,6 +546,9 @@ export type ProgrammeTypeCreateWithoutCoursesInput = {
   id?: string
   name: string
   code: string
+  qualification?: $Enums.ProgrammeQualification
+  mode?: $Enums.ProgrammeMode
+  durationYears: number
   createdAt?: Date | string
   updatedAt?: Date | string
   offerings?: Prisma.ProgrammeOfferingCreateNestedManyWithoutProgrammeTypeInput
@@ -417,6 +558,9 @@ export type ProgrammeTypeUncheckedCreateWithoutCoursesInput = {
   id?: string
   name: string
   code: string
+  qualification?: $Enums.ProgrammeQualification
+  mode?: $Enums.ProgrammeMode
+  durationYears: number
   createdAt?: Date | string
   updatedAt?: Date | string
   offerings?: Prisma.ProgrammeOfferingUncheckedCreateNestedManyWithoutProgrammeTypeInput
@@ -442,6 +586,9 @@ export type ProgrammeTypeUpdateWithoutCoursesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   offerings?: Prisma.ProgrammeOfferingUpdateManyWithoutProgrammeTypeNestedInput
@@ -451,6 +598,9 @@ export type ProgrammeTypeUncheckedUpdateWithoutCoursesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.EnumProgrammeQualificationFieldUpdateOperationsInput | $Enums.ProgrammeQualification
+  mode?: Prisma.EnumProgrammeModeFieldUpdateOperationsInput | $Enums.ProgrammeMode
+  durationYears?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   offerings?: Prisma.ProgrammeOfferingUncheckedUpdateManyWithoutProgrammeTypeNestedInput
@@ -500,6 +650,9 @@ export type ProgrammeTypeSelect<ExtArgs extends runtime.Types.Extensions.Interna
   id?: boolean
   name?: boolean
   code?: boolean
+  qualification?: boolean
+  mode?: boolean
+  durationYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   courses?: boolean | Prisma.ProgrammeType$coursesArgs<ExtArgs>
@@ -511,6 +664,9 @@ export type ProgrammeTypeSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   name?: boolean
   code?: boolean
+  qualification?: boolean
+  mode?: boolean
+  durationYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["programmeType"]>
@@ -519,6 +675,9 @@ export type ProgrammeTypeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   name?: boolean
   code?: boolean
+  qualification?: boolean
+  mode?: boolean
+  durationYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["programmeType"]>
@@ -527,11 +686,14 @@ export type ProgrammeTypeSelectScalar = {
   id?: boolean
   name?: boolean
   code?: boolean
+  qualification?: boolean
+  mode?: boolean
+  durationYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProgrammeTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "createdAt" | "updatedAt", ExtArgs["result"]["programmeType"]>
+export type ProgrammeTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "qualification" | "mode" | "durationYears" | "createdAt" | "updatedAt", ExtArgs["result"]["programmeType"]>
 export type ProgrammeTypeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courses?: boolean | Prisma.ProgrammeType$coursesArgs<ExtArgs>
   offerings?: boolean | Prisma.ProgrammeType$offeringsArgs<ExtArgs>
@@ -550,6 +712,9 @@ export type $ProgrammeTypePayload<ExtArgs extends runtime.Types.Extensions.Inter
     id: string
     name: string
     code: string
+    qualification: $Enums.ProgrammeQualification
+    mode: $Enums.ProgrammeMode
+    durationYears: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["programmeType"]>
@@ -980,6 +1145,9 @@ export interface ProgrammeTypeFieldRefs {
   readonly id: Prisma.FieldRef<"ProgrammeType", 'String'>
   readonly name: Prisma.FieldRef<"ProgrammeType", 'String'>
   readonly code: Prisma.FieldRef<"ProgrammeType", 'String'>
+  readonly qualification: Prisma.FieldRef<"ProgrammeType", 'ProgrammeQualification'>
+  readonly mode: Prisma.FieldRef<"ProgrammeType", 'ProgrammeMode'>
+  readonly durationYears: Prisma.FieldRef<"ProgrammeType", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ProgrammeType", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProgrammeType", 'DateTime'>
 }

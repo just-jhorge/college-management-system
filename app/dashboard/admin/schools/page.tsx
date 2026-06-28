@@ -22,6 +22,7 @@ export default async function Page() {
   const schools: School[] = rawSchools.map((s) => ({
     id: s.id,
     name: s.name,
+    slug: s.slug,
     status: s.status,
     createdAt: s.createdAt,
     studentCount: s._count.members,

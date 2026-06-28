@@ -156,6 +156,9 @@ export const ProgrammeTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   code: 'code',
+  qualification: 'qualification',
+  mode: 'mode',
+  durationYears: 'durationYears',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

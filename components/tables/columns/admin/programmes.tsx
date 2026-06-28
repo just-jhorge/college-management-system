@@ -27,6 +27,18 @@ export const columns: ColumnDef<Programme>[] = [
     header: "Code",
   },
   {
+    accessorKey: "qualification",
+    header: "Qualification",
+  },
+  {
+    accessorKey: "mode",
+    header: "Programme stream",
+  },
+  {
+    accessorKey: "durationYears",
+    header: "Duration",
+  },
+  {
     id: "actions",
     header: () => {
       return <div className="text-right">Action</div>;

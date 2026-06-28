@@ -1121,6 +1121,9 @@ export const ProgrammeTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   code: 'code',
+  qualification: 'qualification',
+  mode: 'mode',
+  durationYears: 'durationYears',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1245,6 +1248,34 @@ export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'ProgrammeQualification'
+ */
+export type EnumProgrammeQualificationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgrammeQualification'>
+    
+
+
+/**
+ * Reference to a field of type 'ProgrammeQualification[]'
+ */
+export type ListEnumProgrammeQualificationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgrammeQualification[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ProgrammeMode'
+ */
+export type EnumProgrammeModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgrammeMode'>
+    
+
+
+/**
+ * Reference to a field of type 'ProgrammeMode[]'
+ */
+export type ListEnumProgrammeModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgrammeMode[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1255,6 +1286,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**

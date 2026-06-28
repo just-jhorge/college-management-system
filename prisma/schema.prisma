@@ -28,6 +28,15 @@ enum InvoiceStatus {
   WAIVED
 }
 
+enum ProgrammeQualification {
+  DEGREE
+  DIPLOMA
+}
+
+enum ProgrammeMode {
+  REGULAR
+}
+
 model School {
   id        String       @id @default(cuid())
   name      String       @unique
@@ -116,11 +125,14 @@ model Verification {
 }
 
 model ProgrammeType {
-  id        String   @id @default(cuid())
-  name      String
-  code      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String                 @id @default(cuid())
+  name          String
+  code          String                 @unique
+  qualification ProgrammeQualification @default(DIPLOMA)
+  mode          ProgrammeMode          @default(REGULAR)
+  durationYears Int
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
 
   courses   Course[]
   offerings ProgrammeOffering[]

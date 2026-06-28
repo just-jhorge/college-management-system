@@ -22,6 +22,7 @@ import AssignAdminButton from "@/components/buttons/AssignAdminButton";
 export type School = {
   id: string;
   name: string;
+  slug: string;
   createdAt: Date;
   status: SchoolStatus;
   studentCount: number;
@@ -99,7 +100,9 @@ export const columns: ColumnDef<School>[] = [
   {
     id: "actions",
     header: "Action",
-    cell: () => {
+    cell: ({ row }) => {
+      const slug = row.original.slug;
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -110,7 +113,11 @@ export const columns: ColumnDef<School>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>View Details</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href={`/dashboard/admin/schools/${slug}`}>
+                View Details
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>Suspend</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem variant="destructive">

@@ -37,3 +37,18 @@ export const InvoiceStatus = {
 } as const
 
 export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
+
+
+export const ProgrammeQualification = {
+  DEGREE: 'DEGREE',
+  DIPLOMA: 'DIPLOMA'
+} as const
+
+export type ProgrammeQualification = (typeof ProgrammeQualification)[keyof typeof ProgrammeQualification]
+
+
+export const ProgrammeMode = {
+  REGULAR: 'REGULAR'
+} as const
+
+export type ProgrammeMode = (typeof ProgrammeMode)[keyof typeof ProgrammeMode]
