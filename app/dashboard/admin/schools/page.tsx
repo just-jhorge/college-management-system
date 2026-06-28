@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma";
-import { columns, School } from "./columns";
 import { FileSpreadsheet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/tables/DataTable";
 import AddSchoolButton from "@/components/buttons/AddSchoolButton";
+import { columns, School } from "@/components/tables/columns/admin/schools";
 
 export default async function Page() {
   const rawSchools = await prisma.school.findMany({
