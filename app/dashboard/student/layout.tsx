@@ -4,6 +4,7 @@ import { getSession } from "@/utils/session";
 import { Role } from "@/generated/prisma/enums";
 import SidebarStudent from "../_components/SidebarStudent";
 import DashboardLayoutShell from "../_components/DashboardLayoutShell";
+import { getUserSchool } from "@/actions/getUserSchool";
 
 export default async function StudentLayout({
   children,
@@ -15,13 +16,20 @@ export default async function StudentLayout({
 
   if (!session || !user) redirect("/login");
 
-  if (session.user.role !== "STUDENT") {
+  if (user.role !== "STUDENT") {
     redirect("/dashboard");
   }
+
+  if (user.requiresPasswordChange) {
+    redirect("/update-password");
+  }
+
+  const school = await getUserSchool();
 
   return (
     <DashboardLayoutShell
       role={user.role as Role}
+      schoolName={school?.name}
       content={<SidebarStudent user={user} />}
     >
       {children}
