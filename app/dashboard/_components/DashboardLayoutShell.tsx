@@ -8,16 +8,19 @@ import {
 import { Role } from "@/generated/prisma/enums";
 import React, { PropsWithChildren } from "react";
 import { Separator } from "@/components/ui/separator";
+import { AlertTriangle } from "lucide-react";
 
 interface DashboardLayoutShellProps extends PropsWithChildren {
   content: React.ReactNode;
   role: Role;
+  schoolName: string | undefined;
 }
 
 export default function DashboardLayoutShell({
   children,
   content,
   role,
+  schoolName,
 }: DashboardLayoutShellProps) {
   return (
     <SidebarProvider>
@@ -29,9 +32,18 @@ export default function DashboardLayoutShell({
             <Separator orientation="vertical" className="mr-2" />
             {/* FIXME: Replace below with the name of the school */}
             <p className="truncate text-sm">
-              {role !== "SUPER_ADMIN"
-                ? "Nursing and Midwifery Training College, Kumasi"
-                : "Super Admin Account"}
+              {role !== "SUPER_ADMIN" ? (
+                schoolName ? (
+                  schoolName
+                ) : (
+                  <span className="flex items-center gap-2 text-muted-foreground">
+                    <AlertTriangle className="size-4" />
+                    No School Assigned
+                  </span>
+                )
+              ) : (
+                "Super Admin Account"
+              )}
             </p>
           </div>
         </header>

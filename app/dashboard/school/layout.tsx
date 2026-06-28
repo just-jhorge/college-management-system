@@ -4,6 +4,7 @@ import { getSession } from "@/utils/session";
 import { Role } from "@/generated/prisma/enums";
 import SidebarSchool from "../_components/SidebarSchool";
 import DashboardLayoutShell from "../_components/DashboardLayoutShell";
+import { prisma } from "@/lib/prisma";
 
 export default async function SchoolAdminLayout({
   children,
@@ -19,9 +20,18 @@ export default async function SchoolAdminLayout({
     redirect("/update-password");
   }
 
+  const school =
+    user.role !== "SUPER_ADMIN"
+      ? await prisma.school.findUnique({
+          where: { adminId: user.id },
+          select: { name: true },
+        })
+      : null;
+
   return (
     <DashboardLayoutShell
       role={user.role as Role}
+      schoolName={school?.name}
       content={<SidebarSchool user={user} />}
     >
       {children}

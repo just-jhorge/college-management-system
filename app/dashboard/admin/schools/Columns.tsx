@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { SchoolStatus } from "@/generated/prisma/enums";
 import { ArrowUpDown, MoreHorizontal, TrashIcon } from "lucide-react";
+import AssignAdminButton from "@/components/buttons/AssignAdminButton";
 
 export type School = {
   id: string;
@@ -48,11 +49,17 @@ export const columns: ColumnDef<School>[] = [
       return (
         <>
           {primaryAdmin ? (
-            <h4 className="text-sm font-medium">{primaryAdmin.name}</h4>
+            <div className="leading-tight">
+              <h4 className="text-sm font-medium">{primaryAdmin.name}</h4>
+              <span className="text-sm truncate text-muted-foreground">
+                {primaryAdmin.email}
+              </span>
+            </div>
           ) : (
-            <p className="text-muted-foreground text-sm italic">
-              No admin assigned
-            </p>
+            <AssignAdminButton
+              schoolId={row.original.id}
+              schoolName={row.original.name}
+            />
           )}
         </>
       );
@@ -91,9 +98,7 @@ export const columns: ColumnDef<School>[] = [
   {
     id: "actions",
     header: "Action",
-    cell: ({ row }) => {
-      const isPending = !!row.original.primaryAdmin;
-
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -104,12 +109,6 @@ export const columns: ColumnDef<School>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            {!isPending && (
-              <>
-                <DropdownMenuItem>Assign Admin</DropdownMenuItem>
-                <DropdownMenuSeparator />
-              </>
-            )}
             <DropdownMenuItem>View Details</DropdownMenuItem>
             <DropdownMenuItem>Suspend</DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -128,7 +127,7 @@ const statusConfig: Record<SchoolStatus, { label: string; bgColor: string }> = {
     label: "Active",
     bgColor: "bg-green-100 text-green-800 border-green-200",
   },
-  PENDING: {
+  PENDING_SETUP: {
     label: "Pending",
     bgColor: "bg-yellow-100 text-yellow-800 border-yellow-200",
   },

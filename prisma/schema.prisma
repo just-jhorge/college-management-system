@@ -9,8 +9,8 @@ datasource db {
 
 enum SchoolStatus {
   ACTIVE
-  PENDING
   SUSPENDED
+  PENDING_SETUP
 }
 
 enum Role {
@@ -32,7 +32,7 @@ model School {
   id        String       @id @default(cuid())
   name      String       @unique
   slug      String
-  status    SchoolStatus @default(PENDING)
+  status    SchoolStatus @default(PENDING_SETUP)
   adminId   String?      @unique
   admin     User?        @relation("SchoolAdmin", fields: [adminId], references: [id])
   createdAt DateTime     @default(now())

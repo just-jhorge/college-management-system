@@ -11,8 +11,8 @@
 
 export const SchoolStatus = {
   ACTIVE: 'ACTIVE',
-  PENDING: 'PENDING',
-  SUSPENDED: 'SUSPENDED'
+  SUSPENDED: 'SUSPENDED',
+  PENDING_SETUP: 'PENDING_SETUP'
 } as const
 
 export type SchoolStatus = (typeof SchoolStatus)[keyof typeof SchoolStatus]
