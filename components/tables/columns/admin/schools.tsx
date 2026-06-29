@@ -41,6 +41,12 @@ export const columns: ColumnDef<School>[] = [
   {
     accessorKey: "name",
     header: "Institution name",
+    cell: ({ row }) => {
+      const id = row.original.id;
+      return (
+        <Link href={`/dashboard/admin/schools/${id}`}>{row.original.name}</Link>
+      );
+    },
   },
   {
     accessorKey: "primaryAdmin",
@@ -101,7 +107,7 @@ export const columns: ColumnDef<School>[] = [
     id: "actions",
     header: "Action",
     cell: ({ row }) => {
-      const slug = row.original.slug;
+      const id = row.original.id;
 
       return (
         <DropdownMenu>
@@ -114,9 +120,7 @@ export const columns: ColumnDef<School>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem asChild>
-              <Link href={`/dashboard/admin/schools/${slug}`}>
-                View Details
-              </Link>
+              <Link href={`/dashboard/admin/schools/${id}`}>View Details</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>Suspend</DropdownMenuItem>
             <DropdownMenuSeparator />
