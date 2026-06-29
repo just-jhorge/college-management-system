@@ -30,19 +30,21 @@ export default async function Page() {
   }));
 
   return (
-    <DataTable
-      columns={columns}
-      data={schools}
-      filterColumn="name"
-      filterPlaceholder="Search for a school..."
-      toolbar={
-        <>
-          <Button className="bg-green-700 hover:bg-green-700 text-white">
-            <FileSpreadsheet /> Export
-          </Button>
-          <AddSchoolButton />
-        </>
-      }
-    />
+    <div className="py-4">
+      <DataTable
+        columns={columns}
+        data={schools}
+        filterColumn="name"
+        filterPlaceholder="Search for a school..."
+        toolbar={
+          <>
+            <Button className="bg-green-700 hover:bg-green-700 text-white">
+              <FileSpreadsheet /> Export
+            </Button>
+            <AddSchoolButton />
+          </>
+        }
+      />
+    </div>
   );
 }

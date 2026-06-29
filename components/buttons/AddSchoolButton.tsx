@@ -65,15 +65,13 @@ export default function AddSchoolButton() {
               Create a new school tenant and assign its primary admin.
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="space-y-2 py-2">
-              <InputField
-                name="name"
-                control={form.control}
-                label="Name of institution"
-                placeholder="Nursing and Midwifery Training College..."
-              />
-            </div>
+          <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+            <InputField
+              name="name"
+              control={form.control}
+              label="Name of institution"
+              placeholder="Nursing and Midwifery Training College..."
+            />
             <DialogFooter>
               <DialogClose asChild>
                 <Button disabled={isPending} type="button" variant="outline">
@@ -82,7 +80,7 @@ export default function AddSchoolButton() {
               </DialogClose>
               <Button disabled={isPending}>
                 {isPending && <Loader2 className="animate-spin" />}
-                {isPending ? "Adding School..." : "Add School"}
+                {isPending ? "Adding..." : "Add School"}
               </Button>
             </DialogFooter>
           </form>

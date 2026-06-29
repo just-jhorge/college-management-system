@@ -112,7 +112,7 @@ export default function AddUserButton() {
               </DialogClose>
               <Button disabled={isPending}>
                 {isPending && <Loader2 className="animate-spin" />}
-                {isPending ? "Creating user..." : "Create user"}
+                {isPending ? "Creating..." : "Create user"}
               </Button>
             </DialogFooter>
           </form>

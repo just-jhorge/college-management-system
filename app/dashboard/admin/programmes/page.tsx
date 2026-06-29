@@ -8,22 +8,24 @@ export default async function Page() {
   const rawProgrammes = await prisma.programmeType.findMany();
 
   return (
-    <DataTable
-      columns={columns}
-      data={rawProgrammes}
-      filterColumn="name"
-      filterPlaceholder="Search for a programme..."
-      toolbar={
-        <>
-          <Button className="bg-green-700 hover:bg-green-700 text-white">
-            <FileSpreadsheet /> Export
-          </Button>
-          <Button>
-            <PlusIcon />
-            Add Programme
-          </Button>
-        </>
-      }
-    />
+    <div className="py-4">
+      <DataTable
+        columns={columns}
+        data={rawProgrammes}
+        filterColumn="name"
+        filterPlaceholder="Search for a programme..."
+        toolbar={
+          <>
+            <Button className="bg-green-700 hover:bg-green-700 text-white">
+              <FileSpreadsheet /> Export
+            </Button>
+            <Button>
+              <PlusIcon />
+              Add Programme
+            </Button>
+          </>
+        }
+      />
+    </div>
   );
 }

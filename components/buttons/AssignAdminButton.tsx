@@ -97,7 +97,7 @@ export default function AssignAdminButton({
               Select an admin for {schoolName}
             </DialogDescription>
           </DialogHeader>
-          <Command className="bg-neutral-100/50">
+          <Command className="bg-neutral-100/50 dark:bg-neutral-800/50">
             <CommandInput
               placeholder="Search admins..."
               value={searchValue}

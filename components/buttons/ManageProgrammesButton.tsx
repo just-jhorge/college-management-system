@@ -2,9 +2,7 @@
 
 import {
   Dialog,
-  DialogClose,
   DialogTitle,
-  DialogFooter,
   DialogHeader,
   DialogTrigger,
   DialogContent,
@@ -13,18 +11,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { ProgrammeType } from "@/generated/prisma/client";
 import ProgrammeTransferList from "../custom/ProgrammeTransferList";
+import { updateProgrammeOfferings } from "@/actions/superadmin/updateProgrammeOfferings";
+import { useState } from "react";
 
 export default function ManageProgrammesButton({
-  available,
+  schoolId,
   assigned,
-  onChange,
+  available,
 }: {
-  available: ProgrammeType[];
+  schoolId: string;
   assigned: ProgrammeType[];
-  onChange: (newAssigned: ProgrammeType[]) => void;
+  available: ProgrammeType[];
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button size="sm">Manage Programmes</Button>
       </DialogTrigger>
@@ -34,16 +36,20 @@ export default function ManageProgrammesButton({
           <DialogDescription>Description</DialogDescription>
         </DialogHeader>
         <ProgrammeTransferList
+          schoolId={schoolId}
           available={available}
           assigned={assigned}
-          onChange={onChange}
+          onSave={async (schoolId, ids) => {
+            await updateProgrammeOfferings(schoolId, ids);
+            setIsOpen(false);
+          }}
         />
-        <DialogFooter>
+        {/* <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button>Save changes</Button>
-        </DialogFooter>
+        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );

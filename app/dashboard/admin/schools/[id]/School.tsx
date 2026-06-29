@@ -1,23 +1,24 @@
 "use client";
 
-import React from "react";
 import {
   Card,
-  CardContent,
+  CardTitle,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardContent,
 } from "@/components/ui/card";
-import { BadgeCheckIcon, GraduationCap, UsersIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { EditIcon, Trash } from "lucide-react";
-import ManageProgrammesButton from "@/components/buttons/ManageProgrammesButton";
+import { Button } from "@/components/ui/button";
 import { ProgrammeType } from "@/generated/prisma/client";
+import { BadgeCheckIcon, GraduationCap, UsersIcon } from "lucide-react";
+import ManageProgrammesButton from "@/components/buttons/ManageProgrammesButton";
 
 export default function School({
+  id,
   available,
   assigned,
 }: {
+  id: string;
   available: ProgrammeType[];
   assigned: ProgrammeType[];
 }) {
@@ -31,9 +32,9 @@ export default function School({
       icon: GraduationCap,
       actions: (
         <ManageProgrammesButton
-          available={available}
+          schoolId={id}
           assigned={assigned}
-          onChange={() => {}}
+          available={available}
         />
       ),
     },
