@@ -100,7 +100,7 @@ export default function UpdatePassword({ email }: { email: string }) {
           <CardFooter className="justify-end">
             <Button type="submit" disabled={isPending}>
               {isPending && <Loader2 className="animate-spin" />}
-              {isPending ? "Updaing Password..." : "Update Password"}
+              {isPending ? "Updating..." : "Update Password"}
             </Button>
           </CardFooter>
         </form>

@@ -18,21 +18,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function ProgrammeTransferList({
   schoolId,
-  available: initialAvailable,
   assigned: initialAssigned,
+  available: initialAvailable,
   onSave,
 }: {
   schoolId: string;
-  available: ProgrammeType[];
   assigned: ProgrammeType[];
+  available: ProgrammeType[];
   onSave: (schoolId: string, programmeTypeIds: string[]) => Promise<void>;
 }) {
+  const [isPending, startTransition] = React.useTransition();
+  // These are the programmes the school currently runs
   const [assigned, setAssigned] = React.useState(initialAssigned);
+  // These are the programmes the schools isn't running and is accessible
   const [available, setAvailabe] = React.useState(initialAvailable);
+
   const [isDirty, setIsDirty] = React.useState(false);
   const [leftSearch, setLeftSearch] = React.useState("");
   const [rightSearch, setRightSearch] = React.useState("");
-  const [isPending, startTransition] = React.useTransition();
   const [leftChecked, setLeftChecked] = React.useState<Set<string>>(new Set());
   const [rightChecked, setRightChecked] = React.useState<Set<string>>(
     new Set(),
@@ -76,9 +79,9 @@ export default function ProgrammeTransferList({
   }
 
   function moveLeft() {
-    const moving = available.filter((p) => rightChecked.has(p.id));
-    setAvailabe([...available, ...moving]);
+    const moving = assigned.filter((p) => rightChecked.has(p.id));
     setAssigned(assigned.filter((p) => !rightChecked.has(p.id)));
+    setAvailabe([...available, ...moving]);
     setRightChecked(new Set());
     setIsDirty(true);
   }

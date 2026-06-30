@@ -41,7 +41,11 @@ export async function createUser({
       };
     }
 
-    return { success: true, message: "User created successfully." };
+    return {
+      success: true,
+      message: "User created successfully.",
+      tempPassword: tempPassword,
+    };
   } catch (error) {
     if (error instanceof Error) {
       return {
