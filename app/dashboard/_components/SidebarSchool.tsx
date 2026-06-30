@@ -22,7 +22,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const schoolNavigationItems = [
   { title: "Dashboard", url: "#", icon: LayoutDashboard },
-  { title: "Users", url: "#", icon: UsersIcon },
+  { title: "Staff", url: "/dashboard/school/staff", icon: UsersIcon },
   { title: "Students", url: "#", icon: SettingsIcon },
   { title: "Programmes", url: "#", icon: GraduationCapIcon },
   { title: "Semesters", url: "#", icon: CalendarRangeIcon },

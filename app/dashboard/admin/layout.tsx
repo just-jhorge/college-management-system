@@ -4,7 +4,6 @@ import { getSession } from "@/utils/session";
 import { Role } from "@/generated/prisma/enums";
 import SidebarAdmin from "../_components/SidebarAdmin";
 import DashboardLayoutShell from "../_components/DashboardLayoutShell";
-import { getUserSchool } from "@/actions/getUserSchool";
 
 export default async function SuperAdminLayout({
   children,
@@ -24,12 +23,10 @@ export default async function SuperAdminLayout({
     redirect("/update-password");
   }
 
-  const school = await getUserSchool();
-
   return (
     <DashboardLayoutShell
+      schoolName={undefined}
       role={user.role as Role}
-      schoolName={school?.name}
       content={<SidebarAdmin user={user} />}
     >
       {children}

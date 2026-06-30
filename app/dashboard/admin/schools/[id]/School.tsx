@@ -7,28 +7,35 @@ import {
   CardHeader,
   CardContent,
 } from "@/components/ui/card";
+import { format } from "date-fns";
 import { EditIcon, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SchoolDetailsData } from "@/types/school";
 import { ProgrammeType } from "@/generated/prisma/client";
 import { BadgeCheckIcon, GraduationCap, UsersIcon } from "lucide-react";
 import ManageProgrammesButton from "@/components/buttons/ManageProgrammesButton";
 
 export default function School({
   id,
+  school,
   available,
   assigned,
 }: {
   id: string;
-  available: ProgrammeType[];
+  school: SchoolDetailsData;
   assigned: ProgrammeType[];
+  available: ProgrammeType[];
 }) {
+  const tutorsCount = school.members.filter((m) => m.role === "TUTOR").length;
+  const studentsCount = school.members.filter(
+    (m) => m.role === "STUDENT",
+  ).length;
+
   const CARD_DETAILS = [
-    { id: 1, title: "Students", data: 1983, icon: UsersIcon, actions: null },
-    { id: 2, title: "Tutors", data: 135, icon: UsersIcon, actions: null },
     {
-      id: 3,
+      id: 1,
       title: "Programmes",
-      data: 5,
+      data: assigned.length,
       icon: GraduationCap,
       actions: (
         <ManageProgrammesButton
@@ -39,9 +46,23 @@ export default function School({
       ),
     },
     {
+      id: 2,
+      title: "Tutors",
+      data: tutorsCount,
+      icon: UsersIcon,
+      actions: null,
+    },
+    {
+      id: 3,
+      title: "Students",
+      data: studentsCount,
+      icon: UsersIcon,
+      actions: null,
+    },
+    {
       id: 4,
       title: "Status",
-      data: "ACTIVE",
+      data: school.status,
       icon: BadgeCheckIcon,
       actions: null,
     },
@@ -53,11 +74,9 @@ export default function School({
         <div className="flex items-center gap-2 lg:gap-4">
           <div className="size-20 rounded-md border border-border">Logo</div>
           <div className="flex-1 leading-5">
-            <h3 className="text-xl font-bold max-w-87.5">
-              Nursing and Midwifery Training College, Kumasi
-            </h3>
+            <h3 className="text-xl font-bold max-w-87.5">{school.name}</h3>
             <p className="text-sm text-muted-foreground">
-              Joined at: Sun, 27 June 2026
+              Joined: {format(school.createdAt, "EEE dd MMMM yyyy")}
             </p>
           </div>
         </div>
