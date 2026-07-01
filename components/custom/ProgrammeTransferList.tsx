@@ -27,13 +27,10 @@ export default function ProgrammeTransferList({
   available: ProgrammeType[];
   onSave: (schoolId: string, programmeTypeIds: string[]) => Promise<void>;
 }) {
-  const [isPending, startTransition] = React.useTransition();
-  // These are the programmes the school currently runs
-  const [assigned, setAssigned] = React.useState(initialAssigned);
-  // These are the programmes the schools isn't running and is accessible
-  const [available, setAvailabe] = React.useState(initialAvailable);
-
   const [isDirty, setIsDirty] = React.useState(false);
+  const [isPending, startTransition] = React.useTransition();
+  const [assigned, setAssigned] = React.useState(initialAssigned);
+  const [available, setAvailabe] = React.useState(initialAvailable);
   const [leftSearch, setLeftSearch] = React.useState("");
   const [rightSearch, setRightSearch] = React.useState("");
   const [leftChecked, setLeftChecked] = React.useState<Set<string>>(new Set());
