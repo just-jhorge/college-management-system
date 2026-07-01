@@ -21,6 +21,7 @@ export const auth = betterAuth({
     },
   },
   trustedOrigins: [
+    "http://10.10.*.*",
     "http://localhost:3000",
     "https://collegerrpreview.vercel.app",
   ],
